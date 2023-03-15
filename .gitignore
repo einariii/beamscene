@@ -1,3 +1,10 @@
+.history
+
+.env
+
+# Dialyzer plt files
+priv/plts
+
 # The directory Mix will write compiled artifacts to.
 /_build/
 
@@ -31,4 +38,3 @@ blog-*.tar
 # In case you use Node.js/npm, you want to ignore these.
 npm-debug.log
 /assets/node_modules/
-

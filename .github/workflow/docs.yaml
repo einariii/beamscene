@@ -1,0 +1,60 @@
+name: docs
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - lib/**
+      - mix.lock
+      - mix.exs
+      - README.md
+
+env:
+  ELIXIR_VERSION: 1.14.2
+  OTP_VERSION: 25
+  MIX_ENV: dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: ${{ env.OTP_VERSION }}
+          elixir-version: ${{ env.ELIXIR_VERSION }}
+      - name: Retrieve Mix Dependencies Cache
+        uses: actions/cache@v3
+        id: mix-cache
+        with:
+          path: deps
+          key: ${{ runner.os }}-${{ env.OTP_VERSION }}-${{ env.ELIXIR_VERSION }}-mix-${{ hashFiles('**/mix.lock') }}
+
+      - name: Install Mix Dependencies
+        run: |
+          mix local.rebar --force
+          mix local.hex --force
+          mix deps.get
+        if: steps.mix-cache.outputs.cache-hit != 'true'
+
+      - name: Build Docs
+        run: mix docs
+
+      - name: Upload Docs
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: doc
+  deploy:
+    needs: build
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/deploy-pages@v1
