@@ -1,11 +1,18 @@
 defmodule Blog.MixProject do
   use Mix.Project
 
+  @name "Blog"
+  @description "Description"
+  @source_url "https://github.com/opanye/blog"
+  @version "0.1.0"
+
   def project do
     [
+      name: @name,
+      description: @description,
       app: :blog,
-      version: "0.1.0",
-      elixir: "~> 1.12",
+      version: @version,
+      elixir: "~> 1.14.2",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -14,7 +21,8 @@ defmodule Blog.MixProject do
       dialyzer: dialyzer(),
       preferred_cli_env: [
         test: :test
-      ]
+      ],
+      docs: docs()
     ]
   end
 
@@ -31,6 +39,17 @@ defmodule Blog.MixProject do
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
+
+  defp docs do
+    [
+      extras: [
+        {:"README.md", [title: "Overview"]}
+      ],
+      main: "readme",
+      source_url: @source_url,
+      source_ref: "v#{@version}"
+    ]
+  end
 
   # Specifies your project dependencies.
   #
@@ -53,6 +72,7 @@ defmodule Blog.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
+      {:ex_doc, "~> 0.27", only: :dev, runtime: false},
       {:sobelow, "~> 0.11", only: [:dev, :test], runtime: false},
       {:mix_audit, "~> 2.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
@@ -80,7 +100,8 @@ defmodule Blog.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["cmd shell/db.sh start", "ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.deploy": ["esbuild default --minify", "phx.digest"]
+      "assets.deploy": ["esbuild default --minify", "phx.digest"],
+      docs: ["docs --formatter html"]
     ]
   end
 end
