@@ -12,7 +12,7 @@ defmodule Blog.MixProject do
       description: @description,
       app: :blog,
       version: @version,
-      elixir: "~> 1.12",
+      elixir: "~> 1.14.2",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: Mix.compilers(),
       start_permanent: Mix.env() == :prod,
