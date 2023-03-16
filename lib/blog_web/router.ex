@@ -1,4 +1,5 @@
 defmodule BlogWeb.Router do
+  alias BlogWeb.PostController
   use BlogWeb, :router
 
   pipeline :browser do
@@ -18,6 +19,8 @@ defmodule BlogWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    resources "/posts", PostsController
   end
 
   # Other scopes may use custom stacks.
