@@ -18,6 +18,10 @@ defmodule Blog.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
+      dialyzer: dialyzer(),
+      preferred_cli_env: [
+        test: :test
+      ],
       docs: docs()
     ]
   end
@@ -68,8 +72,19 @@ defmodule Blog.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
+      {:ex_doc, "~> 0.27", only: :dev, runtime: false},
+      {:sobelow, "~> 0.11", only: [:dev, :test], runtime: false},
+      {:mix_audit, "~> 2.0", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
-      {:ex_doc, "~> 0.27", only: :dev, runtime: false}
+    ]
+  end
+
+  defp dialyzer do
+    [
+      plt_core_path: "priv/plts",
+      plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
     ]
   end
 
