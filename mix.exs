@@ -77,7 +77,7 @@ defmodule Blog.MixProject do
       {:mix_audit, "~> 2.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.27", only: :dev, runtime: false}
+      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
     ]
   end
 
@@ -99,8 +99,8 @@ defmodule Blog.MixProject do
       setup: ["deps.get", "ecto.setup"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["cmd shell/db.sh start", "ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.deploy": ["esbuild default --minify", "phx.digest"],
+      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"],
       docs: ["docs --formatter html"]
     ]
   end
