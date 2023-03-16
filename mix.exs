@@ -68,6 +68,7 @@ defmodule Blog.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
+      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
       {:ex_doc, "~> 0.27", only: :dev, runtime: false}
     ]
   end
@@ -84,7 +85,7 @@ defmodule Blog.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.deploy": ["esbuild default --minify", "phx.digest"],
+      "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"],
       docs: ["docs --formatter html"]
     ]
   end
