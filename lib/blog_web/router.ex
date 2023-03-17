@@ -1,5 +1,5 @@
 defmodule BlogWeb.Router do
-  alias BlogWeb.PostController
+  alias BlogWeb.PostsController
   use BlogWeb, :router
 
   pipeline :browser do

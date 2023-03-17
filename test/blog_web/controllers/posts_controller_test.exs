@@ -1,4 +1,4 @@
-defmodule BlogWeb.PostControllerTest do
+defmodule BlogWeb.PostsControllerTest do
   use BlogWeb.ConnCase
 
   import Blog.PostsFixtures
