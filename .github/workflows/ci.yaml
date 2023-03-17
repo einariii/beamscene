@@ -29,7 +29,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Setup elixir
         uses: erlef/setup-beam@v1
@@ -41,7 +42,9 @@ jobs:
         uses: actions/cache@v3
         id: mix-cache
         with:
-          path: deps
+          path: |
+            _build
+            deps
           key: ${{ runner.os }}-${{ env.OTP_VERSION }}-${{ env.ELIXIR_VERSION }}-mix-${{ hashFiles('**/mix.lock') }}
 
       - name: Install Mix Dependencies
@@ -58,7 +61,8 @@ jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Setup elixir
         uses: erlef/setup-beam@v1
@@ -70,7 +74,9 @@ jobs:
         uses: actions/cache@v3
         id: mix-cache
         with:
-          path: deps
+          path: |
+            _build
+            deps
           key: ${{ runner.os }}-${{ env.OTP_VERSION }}-${{ env.ELIXIR_VERSION }}-mix-${{ hashFiles('**/mix.lock') }}
 
       - name: Install Mix Dependencies
@@ -95,7 +101,8 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Setup elixir
         uses: erlef/setup-beam@v1
@@ -107,7 +114,9 @@ jobs:
         uses: actions/cache@v3
         id: mix-cache
         with:
-          path: deps
+          path: |
+            _build
+            deps
           key: ${{ runner.os }}-${{ env.OTP_VERSION }}-${{ env.ELIXIR_VERSION }}-mix-${{ hashFiles('**/mix.lock') }}
 
       - name: Install Mix Dependencies
