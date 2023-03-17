@@ -1,5 +1,11 @@
 <h1>Listing Posts</h1>
 
+<.form let={f} for={@conn} method={"get"} action={"/posts"}>
+  <%= text_input f, :search_input %>
+  <%= submit "Search" %>
+</.form>
+
+
 <table>
   <thead>
     <tr>

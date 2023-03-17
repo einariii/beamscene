@@ -17,6 +17,17 @@ defmodule Blog.Posts do
       [%Post{}, ...]
 
   """
+
+  def list_posts(filters) do
+    post_title = "%#{filters[:search_input]}%"
+
+    query =
+      from p in Post,
+        where: ilike(p.title, ^post_title)
+
+    Repo.all(query)
+  end
+
   def list_posts do
     Repo.all(Post)
   end

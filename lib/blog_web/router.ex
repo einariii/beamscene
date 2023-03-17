@@ -1,5 +1,4 @@
 defmodule BlogWeb.Router do
-  alias BlogWeb.PostsController
   use BlogWeb, :router
 
   pipeline :browser do
@@ -19,7 +18,7 @@ defmodule BlogWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-
+    # get "/search", PostsController, :search
     resources "/posts", PostsController
   end
 
