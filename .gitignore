@@ -1,5 +1,10 @@
 .history
 
+.env
+
+# Dialyzer plt files
+priv/plts
+
 # The directory Mix will write compiled artifacts to.
 /_build/
 
