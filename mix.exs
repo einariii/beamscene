@@ -77,7 +77,7 @@ defmodule Blog.MixProject do
       {:mix_audit, "~> 2.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
-      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
+      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev}
     ]
   end
 
