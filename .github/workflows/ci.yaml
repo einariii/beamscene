@@ -28,6 +28,21 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: server_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -53,6 +68,10 @@ jobs:
           mix local.hex --force
           mix deps.get
         if: steps.mix-cache.outputs.cache-hit != 'true'
+
+      - name: Run Ecto Setup
+        run: mix ecto.setup
+        if: success() || failure()
 
       - name: Run Tests
         run: mix test
