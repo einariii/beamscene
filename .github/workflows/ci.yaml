@@ -147,12 +147,13 @@ jobs:
         with:
           path: priv/plts
           key: ${{ runner.os }}-${{ env.OTP_VERSION }}-${{ env.ELIXIR_VERSION }}-plt-${{ hashFiles('**/mix.lock') }}
+        if: success() || failure()
 
       - name: Create PLTs
         run: |
           mkdir -p priv/plts
           mix dialyzer --plt
-        if: steps.plt-cache-restore.outputs.cache-hit != 'true'
+        if: steps.plt-cache-restore.outputs.cache-hit != 'true' && (success() || failure())
 
       - name: Save PLT Cache
         uses: actions/cache/save@v3
@@ -160,7 +161,7 @@ jobs:
         with:
           path: priv/plts
           key: ${{ runner.os }}-${{ env.OTP_VERSION }}-${{ env.ELIXIR_VERSION }}-plt-${{ hashFiles('**/mix.lock') }}
-        if: steps.plt-cache-restore.outputs.cache-hit != 'true'
+        if: steps.plt-cache-restore.outputs.cache-hit != 'true' && (success() || failure())
 
       - name: Run Dialyzer
         run: mix dialyzer
