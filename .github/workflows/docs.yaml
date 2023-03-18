@@ -5,11 +5,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - lib/**
-      - mix.lock
-      - mix.exs
-      - README.md
 
 env:
   ELIXIR_VERSION: 1.14.2

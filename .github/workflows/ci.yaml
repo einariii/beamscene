@@ -5,21 +5,9 @@ on:
   push:
     branches:
       - main
-    paths:
-      - lib/**
-      - test/**
-      - config/*
-      - mix.lock
-      - mix.exs
   pull_request:
     branches:
-      - main
-    paths:
-      - lib/**
-      - test/**
-      - config/*
-      - mix.lock
-      - mix.exs
+      - "*"
 
 env:
   ELIXIR_VERSION: 1.14.2
