@@ -1,4 +1,7 @@
 defmodule Blog.Posts.Post do
+  @moduledoc """
+  Documentation for Blog.Posts.Post
+  """
   use Ecto.Schema
   import Ecto.Changeset
 
