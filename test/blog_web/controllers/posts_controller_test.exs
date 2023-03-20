@@ -13,8 +13,22 @@ defmodule BlogWeb.PostsControllerTest do
 
   describe "index" do
     test "lists all posts", %{conn: conn} do
+      post = post_fixture()
       conn = get(conn, Routes.posts_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Posts"
+      assert html_response(conn, 200) =~ post.title
+      assert html_response(conn, 200) =~ "Search Posts"
+    end
+
+    test "lists all posts _ matching search query", %{conn: conn} do
+      post = post_fixture(title: "Yo! The crazy blog")
+      conn = get(conn, Routes.posts_path(conn, :index, title: post.title))
+      assert html_response(conn, 200) =~ post.title
+    end
+
+    test "lists all posts _ not matching search query", %{conn: conn} do
+      post = post_fixture(title: "Generic Servers")
+      conn = get(conn, Routes.posts_path(conn, :index, title: "The usual suspects"))
+      refute html_response(conn, 200) =~ post.title
     end
   end
 
@@ -28,6 +42,7 @@ defmodule BlogWeb.PostsControllerTest do
   describe "create post" do
     test "redirects to show when data is valid", %{conn: conn} do
       conn = post(conn, Routes.posts_path(conn, :create), post: @create_attrs)
+      assert get_flash(conn, :info) == "Post created successfully."
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == Routes.posts_path(conn, :show, id)

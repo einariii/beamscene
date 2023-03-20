@@ -1,7 +1,8 @@
-<h1>Listing Posts</h1>
+<h1>Search Posts</h1>
 
-<.form let={f} for={@conn} method={"get"} action={"/posts"}>
-  <%= text_input f, :search_input %>
+<.form let={f} for={@conn} method={"get"} action={Routes.posts_path(@conn, :index)}>
+  <%= text_input f, :title %>
+  <%= error_tag f, :title %>
   <%= submit "Search" %>
 </.form>
 

@@ -15,6 +15,31 @@ defmodule Blog.PostsTest do
       assert Posts.list_posts() == [post]
     end
 
+    test "list_posts/1 _ matching title" do
+      post = post_fixture(title: "Erlang Processes")
+      assert Posts.list_posts("Erlang Processes") == [post]
+    end
+
+    test "list_posts/1 _ non matching title" do
+      _post = post_fixture(title: "Queue Data Structure")
+      assert Posts.list_posts("The Enum module") == []
+    end
+
+    test "list_posts/1 _ partially matching title" do
+      post = post_fixture(title: "Who supervises the supervisor?")
+      assert Posts.list_posts("Who") == [post]
+      assert Posts.list_posts("supervises") == [post]
+      assert Posts.list_posts("supervisor?") == [post]
+    end
+
+    test "list_posts/1 _ case insensitive match" do
+      post = post_fixture(title: "Let it crash!")
+      assert Posts.list_posts("LET") == [post]
+      assert Posts.list_posts("let") == [post]
+      assert Posts.list_posts("iT") == [post]
+      assert Posts.list_posts("CraSh") == [post]
+    end
+
     test "get_post!/1 returns the post with given id" do
       post = post_fixture()
       assert Posts.get_post!(post.id) == post
