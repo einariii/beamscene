@@ -10,18 +10,20 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Subtitle</th>
       <th>Content</th>
+      <th>Published On</th>
+      <th>Visible</th>
 
       <th></th>
     </tr>
   </thead>
   <tbody>
 <%= for post <- @posts do %>
+    <%= if post.visible and post.published_on <= Date.utc_today() do %>
     <tr>
       <td><%= post.title %></td>
-      <td><%= post.subtitle %></td>
       <td><%= post.content %></td>
+      <td><%= post.published_on %></td>
 
       <td>
         <span><%= link "Show", to: Routes.posts_path(@conn, :show, post) %></span>
@@ -29,6 +31,7 @@
         <span><%= link "Delete", to: Routes.posts_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </td>
     </tr>
+    <% end %>
 <% end %>
   </tbody>
 </table>
