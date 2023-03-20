@@ -9,7 +9,7 @@ defmodule Blog.Posts.Post do
     field :title, :string
     field :content, :string
     field :published_on, :date
-    field :visible, :boolean
+    field :visible, :boolean, default: true
 
     timestamps()
   end
