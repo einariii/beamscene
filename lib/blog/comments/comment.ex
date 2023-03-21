@@ -2,6 +2,9 @@ defmodule Blog.Comments.Comment do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @moduledoc """
+  This file sets the comments schema.
+  """
   schema "comments" do
     field :content, :string
     belongs_to :post, Blog.Posts.Post
