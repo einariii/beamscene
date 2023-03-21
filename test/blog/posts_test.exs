@@ -46,11 +46,18 @@ defmodule Blog.PostsTest do
     end
 
     test "create_post/1 with valid data creates a post" do
-      valid_attrs = %{content: "some content", title: "some title"}
+      valid_attrs = %{
+        content: "some content",
+        title: "some title",
+        published_on: ~D[2022-02-02],
+        visible: true
+      }
 
       assert {:ok, %Post{} = post} = Posts.create_post(valid_attrs)
       assert post.content == "some content"
       assert post.title == "some title"
+      assert post.published_on == ~D[2022-02-02]
+      assert post.visible == true
     end
 
     test "create_post/1 with invalid data returns error changeset" do
@@ -62,12 +69,16 @@ defmodule Blog.PostsTest do
 
       update_attrs = %{
         content: "some updated content",
-        title: "some updated title"
+        title: "some updated title",
+        published_on: ~D[2023-03-03],
+        visible: false
       }
 
       assert {:ok, %Post{} = post} = Posts.update_post(post, update_attrs)
       assert post.content == "some updated content"
       assert post.title == "some updated title"
+      assert post.published_on == ~D[2023-03-03]
+      assert post.visible == false
     end
 
     test "update_post/2 with invalid data returns error changeset" do
