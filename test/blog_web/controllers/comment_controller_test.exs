@@ -2,6 +2,7 @@ defmodule BlogWeb.CommentControllerTest do
   use BlogWeb.ConnCase
 
   import Blog.CommentsFixtures
+  import Blog.PostsFixtures
 
   @create_attrs %{content: "some content"}
   @update_attrs %{content: "some updated content"}
@@ -30,6 +31,25 @@ defmodule BlogWeb.CommentControllerTest do
 
       conn = get(conn, Routes.comment_path(conn, :show, id))
       assert html_response(conn, 200) =~ "Show Comment"
+    end
+
+    test "create comment with associated post", %{conn: conn} do
+      post =
+        post_fixture()
+        |> Blog.Repo.preload([:comments])
+        |> IO.inspect(label: "Post")
+
+      conn =
+        post(conn, Routes.comment_path(conn, :create),
+          comment: %{"post_id" => post.id, content: "A top comment"}
+        )
+
+      assert %{id: post_id} = redirected_params(conn)
+      assert redirected_to(conn) == Routes.comment_path(conn, :show, post_id)
+
+      # conn = get(conn, Routes.comment_path(conn, :show, post_id))
+      # assert html_response(conn, 200) =~ "List Comments"
+      # assert html_response(conn, 200) =~ "A top comment"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do

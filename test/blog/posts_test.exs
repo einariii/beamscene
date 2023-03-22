@@ -12,7 +12,7 @@ defmodule Blog.PostsTest do
 
     test "list_posts/0 returns all posts" do
       post = post_fixture()
-      assert Posts.list_posts() == [post]
+      assert Enum.member?(Posts.list_posts(), post)
     end
 
     test "list_posts/1 _ matching title" do

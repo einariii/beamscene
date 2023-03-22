@@ -17,6 +17,8 @@ defmodule Blog.Comments.Comment do
     comment
     |> cast(attrs, [:content, :post_id])
     |> validate_required([:content])
+    |> foreign_key_constraint(:post_id)
+
     # |> Ecto.Changeset.put_assoc(:posts, comment)
   end
 end
