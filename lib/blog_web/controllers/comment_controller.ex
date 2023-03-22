@@ -14,8 +14,11 @@ defmodule BlogWeb.CommentController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"comment" => comment_params}) do
-    case Comments.create_comment(comment_params) do
+  def create(conn, %{"comment" => comment, "post_id" => post_id} = params) do
+    IO.inspect(params, label: "Params")
+    comment_map = Map.put(comment, post_id, post_id)
+
+    case Comments.create_comment(comment_map) do
       {:ok, comment} ->
         conn
         |> put_flash(:info, "Comment created successfully.")

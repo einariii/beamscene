@@ -17,5 +17,6 @@ defmodule Blog.Comments.Comment do
     comment
     |> cast(attrs, [:content, :post_id])
     |> validate_required([:content])
+    # |> Ecto.Changeset.put_assoc(:posts, comment)
   end
 end
