@@ -23,14 +23,15 @@ defmodule BlogWeb.CommentControllerTest do
   end
 
   describe "create comment" do
-    test "redirects to show when data is valid", %{conn: conn} do
+    test "fails without associated post", %{conn: conn} do
       conn = post(conn, Routes.comment_path(conn, :create), comment: @create_attrs)
 
-      assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == Routes.comment_path(conn, :show, id)
+      # assert %{id: id} = redirected_params(conn)
+      # assert redirected_to(conn) == Routes.posts_path(conn, :show, id)
+      assert html_response(conn, 200) =~ "Oops"
 
-      conn = get(conn, Routes.comment_path(conn, :show, id))
-      assert html_response(conn, 200) =~ "Show Comment"
+      # conn = get(conn, Routes.comment_path(conn, :show, id))
+      # assert get_flash(conn, :info) == "Oops, something went wrong! Please check the errors below."
     end
 
     test "create comment with associated post", %{conn: conn} do
@@ -98,7 +99,8 @@ defmodule BlogWeb.CommentControllerTest do
   end
 
   defp create_comment(_) do
-    comment = comment_fixture()
+    post = post_fixture()
+    comment = comment_fixture(post_id: post.id)
     %{comment: comment}
   end
 end

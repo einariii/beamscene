@@ -19,13 +19,17 @@ defmodule BlogWeb.CommentController do
 
     # line 25: how to write redirect(to: Routes.posts_path(conn, :show, post))???
     case Comments.create_comment(comment_params) do
-      {:ok, _comment} ->
+      {:ok, comment} ->
         conn
         |> put_flash(:info, "Comment created successfully.")
-        |> redirect(to: "/posts/#{comment_params["post_id"]}")
+        |> redirect(to: Routes.posts_path(conn, :show, comment.post_id))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        post = Blog.Posts.get_post!(comment_params["post_id"])
+        conn
+        |> put_view(BlogWeb.PostsView)
+        |> IO.inspect(label: "ASDJHFALKJSHFKLJHASKDJLHASJKDHA")
+        |> render("show.html", comment_changeset: changeset, post: post)
     end
   end
 
