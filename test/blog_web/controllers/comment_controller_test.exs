@@ -47,9 +47,9 @@ defmodule BlogWeb.CommentControllerTest do
       assert %{id: post_id} = redirected_params(conn)
       assert redirected_to(conn) == Routes.comment_path(conn, :show, post_id)
 
-      # conn = get(conn, Routes.comment_path(conn, :show, post_id))
-      # assert html_response(conn, 200) =~ "List Comments"
-      # assert html_response(conn, 200) =~ "A top comment"
+      conn = get(conn, Routes.comment_path(conn, :show, post_id))
+      assert html_response(conn, 200) =~ "List Comments"
+      assert html_response(conn, 200) =~ "A top comment"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
