@@ -3,6 +3,7 @@ defmodule BlogWeb.CommentControllerTest do
 
   import Blog.CommentsFixtures
   import Blog.PostsFixtures
+  alias Blog.Repo
 
   @create_attrs %{content: "some content"}
   @update_attrs %{content: "some updated content"}
@@ -54,8 +55,10 @@ defmodule BlogWeb.CommentControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, Routes.comment_path(conn, :create), comment: @invalid_attrs)
-      assert html_response(conn, 200) =~ "New Comment"
+      post = post_fixture() |> Repo.preload([:comments])
+      attrs = Map.put(@invalid_attrs, :post_id, post.id)
+      conn = post(conn, Routes.comment_path(conn, :create), comment: attrs)
+      assert html_response(conn, 200) =~ "Can't"
     end
   end
 
