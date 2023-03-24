@@ -12,7 +12,7 @@ defmodule Blog.CommentsTest do
     @invalid_attrs %{content: nil}
 
     test "list_comments/0 returns all comments" do
-      post= post_fixture()
+      post = post_fixture()
       comment = comment_fixture(post_id: post.id)
       assert Comments.list_comments() == [comment]
     end
@@ -36,7 +36,7 @@ defmodule Blog.CommentsTest do
     end
 
     test "update_comment/2 with valid data updates the comment" do
-      post= post_fixture()
+      post = post_fixture()
       comment = comment_fixture(post_id: post.id)
       update_attrs = %{content: "some updated content"}
 
@@ -45,7 +45,7 @@ defmodule Blog.CommentsTest do
     end
 
     test "update_comment/2 with invalid data returns error changeset" do
-      post= post_fixture()
+      post = post_fixture()
       comment = comment_fixture(post_id: post.id)
       assert {:error, %Ecto.Changeset{}} = Comments.update_comment(comment, @invalid_attrs)
       assert comment == Comments.get_comment!(comment.id)
@@ -59,7 +59,7 @@ defmodule Blog.CommentsTest do
     end
 
     test "change_comment/1 returns a comment changeset" do
-      post= post_fixture()
+      post = post_fixture()
       comment = comment_fixture(post_id: post.id)
       assert %Ecto.Changeset{} = Comments.change_comment(comment)
     end

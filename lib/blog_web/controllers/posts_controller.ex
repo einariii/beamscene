@@ -1,10 +1,10 @@
 defmodule BlogWeb.PostsController do
   use BlogWeb, :controller
 
-  alias Blog.Posts
-  alias Blog.Posts.Post
   alias Blog.Comments
   alias Blog.Comments.Comment
+  alias Blog.Posts
+  alias Blog.Posts.Post
 
   def index(conn, %{"title" => title}) do
     posts = Posts.list_posts(title)
@@ -35,7 +35,7 @@ defmodule BlogWeb.PostsController do
 
   def show(conn, %{"id" => id}) do
     post = Posts.get_post!(id) |> Blog.Repo.preload([:comments])
-    comment_changeset = Blog.Comments.change_comment(%Comment{})
+    comment_changeset = Comments.change_comment(%Comment{})
     render(conn, "show.html", post: post, comment_changeset: comment_changeset)
   end
 

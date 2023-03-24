@@ -48,7 +48,7 @@ defmodule Blog.Posts do
       from p in Post,
         preload: :comments
 
-      Repo.get!(query, id)
+    Repo.get!(query, id)
   end
 
   @doc """
