@@ -15,7 +15,6 @@ defmodule BlogWeb.CommentController do
   end
 
   def create(conn, %{"comment" => comment_params} = params) do
-    IO.inspect(params, label: "Params")
 
     # line 25: how to write redirect(to: Routes.posts_path(conn, :show, post))???
     case Comments.create_comment(comment_params) do
