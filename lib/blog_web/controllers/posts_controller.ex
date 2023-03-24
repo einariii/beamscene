@@ -3,6 +3,7 @@ defmodule BlogWeb.PostsController do
 
   alias Blog.Posts
   alias Blog.Posts.Post
+  alias Blog.Comments
   alias Blog.Comments.Comment
 
   def index(conn, %{"title" => title}) do

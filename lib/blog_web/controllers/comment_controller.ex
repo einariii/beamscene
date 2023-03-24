@@ -26,11 +26,9 @@ defmodule BlogWeb.CommentController do
 
       {:error, %Ecto.Changeset{} = changeset} ->
         post = Blog.Posts.get_post!(comment_params["post_id"])
-        comment = Blog.Posts.get_post!(comment_params["post_id"])
         conn
         |> put_view(BlogWeb.PostsView)
-        |> IO.inspect(label: "ASDJHFALKJSHFKLJHASKDJLHASJKDHA")
-        |> render(to: Routes.posts_path(conn, :show, comment.post_id), comment_changeset: changeset, post: post)
+        |> render("show.html", comment_changeset: changeset, post: post)
     end
   end
 
