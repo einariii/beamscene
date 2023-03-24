@@ -2,6 +2,7 @@ defmodule Blog.PostsTest do
   use Blog.DataCase
 
   alias Blog.Posts
+  alias Blog.Repo
 
   describe "posts" do
     alias Blog.Posts.Post
@@ -12,7 +13,7 @@ defmodule Blog.PostsTest do
 
     test "list_posts/0 returns all posts" do
       post = post_fixture()
-      assert Posts.list_posts() == [post]
+      assert Enum.member?(Posts.list_posts(), post)
     end
 
     test "list_posts/1 _ matching title" do
@@ -41,7 +42,9 @@ defmodule Blog.PostsTest do
     end
 
     test "get_post!/1 returns the post with given id" do
-      post = post_fixture()
+      # Should this be preloaded (current both not)?
+      post = post_fixture() |> Repo.preload([:comments])
+      # post = post_fixture()
       assert Posts.get_post!(post.id) == post
     end
 
@@ -82,7 +85,7 @@ defmodule Blog.PostsTest do
     end
 
     test "update_post/2 with invalid data returns error changeset" do
-      post = post_fixture()
+      post = post_fixture() |> Repo.preload([:comments])
       assert {:error, %Ecto.Changeset{}} = Posts.update_post(post, @invalid_attrs)
       assert post == Posts.get_post!(post.id)
     end

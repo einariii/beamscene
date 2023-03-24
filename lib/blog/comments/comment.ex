@@ -16,6 +16,9 @@ defmodule Blog.Comments.Comment do
   def changeset(comment, attrs) do
     comment
     |> cast(attrs, [:content, :post_id])
-    |> validate_required([:content])
+    |> validate_required([:content, :post_id])
+    |> foreign_key_constraint(:post_id)
+
+    # |> Ecto.Changeset.put_assoc(:posts, comment)
   end
 end

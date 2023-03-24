@@ -1,28 +1,60 @@
-<h1>Show Post</h1>
+<section>
+  <h1>Show Post</h1>
 
-<ul>
+  <ul>
 
-  <li>
-    <strong>Title:</strong>
-    <%= @post.title %>
-  </li>
+    <li>
+      <strong>Title:</strong>
+      <%= @post.title %>
+    </li>
 
-  <li>
-    <strong>Content:</strong>
-    <%= @post.content %>
-  </li>
+    <li>
+      <strong>Content:</strong>
+      <%= @post.content %>
+    </li>
 
-  <li>
-    <strong>Published On:</strong>
-    <%= @post.published_on %>
-  </li>
+    <li>
+      <strong>Published On:</strong>
+      <%= @post.published_on %>
+    </li>
 
-  <li>
-    <strong>Visible:</strong>
-    <%= @post.visible %>
-  </li>
+    <li>
+      <strong>Visible:</strong>
+      <%= @post.visible %>
+    </li>
 
-</ul>
+  </ul>
 
-<span><%= link "Edit", to: Routes.posts_path(@conn, :edit, @post) %></span> |
-<span><%= link "Back", to: Routes.posts_path(@conn, :index) %></span>
+  <span><%= link "Edit", to: Routes.posts_path(@conn, :edit, @post) %></span> |
+  <span><%= link "Back", to: Routes.posts_path(@conn, :index) %></span>
+</section>
+
+<section>
+  <h1>List Comments</h1>
+  <%= for comment <- @post.comments do %>
+    <article>
+      <p><%= comment.content %></p>
+    </article>
+  <% end %>
+</section>
+
+<section>
+  <h1>Add a Comment</h1>
+  <%= form_for @comment_changeset, Routes.comment_path(@conn, :create, @post.id), fn f -> %>
+    <%!-- <%= if @changeset.action do %>
+      <div class="alert alert-danger">
+        <p>Oops, something went wrong! Please check the errors below.</p>
+      </div>
+    <% end %> --%>
+
+    <%= label f, :content %>
+    <%= textarea f, :content %>
+    <%= error_tag f, :content %>
+
+    <%= hidden_input f, :post_id, value: @post.id %>
+
+    <div>
+      <%= submit "Save" %>
+    </div>
+  <% end %>
+</section>
