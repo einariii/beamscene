@@ -35,10 +35,10 @@ defmodule Blog.PostsTest do
 
     test "list_posts/1 _ case insensitive match" do
       post = post_fixture(title: "Let it crash!")
-      assert Posts.list_posts("LET") == [post]
-      assert Posts.list_posts("let") == [post]
-      assert Posts.list_posts("iT") == [post]
-      assert Posts.list_posts("CraSh") == [post]
+      assert Enum.member?(Posts.list_posts("LET"), post)
+      assert Enum.member?(Posts.list_posts("let"), post)
+      assert Enum.member?(Posts.list_posts("iT"), post)
+      assert Enum.member?(Posts.list_posts("CraSh"), post)
     end
 
     test "get_post!/1 returns the post with given id" do

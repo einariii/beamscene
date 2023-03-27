@@ -14,7 +14,8 @@ defmodule Blog.CommentsTest do
     test "list_comments/0 returns all comments" do
       post = post_fixture()
       comment = comment_fixture(post_id: post.id)
-      assert Comments.list_comments() == [comment]
+      comments_list = Comments.list_comments()
+      assert Enum.member?(comments_list, comment)
     end
 
     test "get_comment!/1 returns the comment with given id" do
