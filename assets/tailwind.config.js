@@ -2,6 +2,8 @@
 // https://tailwindcss.com/docs/configuration
 
 let plugin = require('tailwindcss/plugin')
+// const defaultTheme = require('tailwindcss/defaultTheme')
+
 
 module.exports = {
   content: [
@@ -10,7 +12,14 @@ module.exports = {
     '../lib/*_web/**/*.*ex'
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'sans': ['Jura'],
+        'serif': ['Kosugi'],
+        'jura': ['Jura'],
+        'kosugi': ['Kosugi']
+      }
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),
