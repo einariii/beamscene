@@ -29,6 +29,7 @@ defmodule BlogWeb.PostsController do
         |> redirect(to: Routes.posts_path(conn, :show, post))
 
       {:error, %Ecto.Changeset{} = changeset} ->
+        IO.inspect(changeset, label: "Changeset")
         render(conn, "new.html", changeset: changeset)
     end
   end

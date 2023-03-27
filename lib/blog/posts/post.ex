@@ -19,7 +19,8 @@ defmodule Blog.Posts.Post do
   @doc false
   def changeset(post, attrs) do
     post
-    |> cast(attrs, [:title, :content, :published_on, :visible])
-    |> validate_required([:title, :content, :visible])
+    |> cast(attrs, [:title, :content, :published_on, :visible, :user_id])
+    |> validate_required([:title, :content, :visible, :user_id])
+    |> foreign_key_constraint(:user_id)
   end
 end

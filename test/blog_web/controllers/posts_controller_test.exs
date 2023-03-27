@@ -11,23 +11,27 @@ defmodule BlogWeb.PostsControllerTest do
     title: "some updated title"
   }
   @invalid_attrs %{content: nil, subtitle: nil, title: nil}
+  setup [:register_and_log_in_user]
 
   describe "index" do
     test "lists all posts", %{conn: conn} do
-      post = post_fixture()
+      user = user_fixture()
+      post = post_fixture(user_id: user.id)
       conn = get(conn, Routes.posts_path(conn, :index))
       assert html_response(conn, 200) =~ post.title
       assert html_response(conn, 200) =~ "Search Posts"
     end
 
     test "lists all posts _ matching search query", %{conn: conn} do
-      post = post_fixture(title: "Yo! The crazy blog")
+      user = user_fixture()
+      post = post_fixture(user_id: user.id, title: "Yo! The crazy blog")
       conn = get(conn, Routes.posts_path(conn, :index, title: post.title))
       assert html_response(conn, 200) =~ post.title
     end
 
     test "lists all posts _ not matching search query", %{conn: conn} do
-      post = post_fixture(title: "Generic Servers")
+      user = user_fixture()
+      post = post_fixture(user_id: user.id, title: "Generic Servers")
       conn = get(conn, Routes.posts_path(conn, :index, title: "The usual suspects"))
       refute html_response(conn, 200) =~ post.title
     end
@@ -42,7 +46,9 @@ defmodule BlogWeb.PostsControllerTest do
 
   describe "create post" do
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.posts_path(conn, :create), post: @create_attrs)
+      user = user_fixture()
+      attributes = Map.put(@create_attrs, :user_id, user.id)
+      conn = post(conn, Routes.posts_path(conn, :create), post: attributes)
       assert get_flash(conn, :info) == "Post created successfully."
 
       assert %{id: id} = redirected_params(conn)
@@ -85,7 +91,7 @@ defmodule BlogWeb.PostsControllerTest do
   end
 
   describe "delete post" do
-    setup [:create_post]
+    setup [:create_post, :register_and_log_in_user]
 
     test "deletes chosen post", %{conn: conn, post: post} do
       conn = delete(conn, Routes.posts_path(conn, :delete, post))

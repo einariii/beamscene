@@ -33,6 +33,7 @@ defmodule BlogWeb.Router do
 
     get "/comments/new", CommentController, :new
     post "/posts/:id", CommentController, :create
+    get "/posts/new", PostsController, :new
   end
 
   # Other scopes may use custom stacks.

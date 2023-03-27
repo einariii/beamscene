@@ -25,6 +25,7 @@ defmodule BlogWeb.CommentControllerTest do
   # end
 
   describe "create comment" do
+    setup [:register_and_log_in_user]
     # test "fails without associated post", %{conn: conn} do
     #   conn = post(conn, Routes.comment_path(conn, :create), comment: @create_attrs)
 
@@ -37,13 +38,15 @@ defmodule BlogWeb.CommentControllerTest do
     # end
 
     test "create comment with associated post", %{conn: conn} do
+      user = user_fixture()
+
       post =
-        post_fixture()
+        post_fixture(user_id: user.id)
         |> Blog.Repo.preload([:comments])
 
       conn =
         post(conn, Routes.comment_path(conn, :create, post.id),
-          comment: %{"post_id" => post.id, content: "A top comment"}
+          comment: %{"user_id" => user.id, "post_id" => post.id, content: "A top comment"}
         )
 
       assert %{id: post_id} = redirected_params(conn)
@@ -55,7 +58,8 @@ defmodule BlogWeb.CommentControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      post = post_fixture() |> Repo.preload([:comments])
+      user = user_fixture()
+      post = post_fixture(user_id: user.id) |> Repo.preload([:comments])
       attrs = Map.put(@invalid_attrs, :post_id, post.id)
       # conn = post(conn, Routes.posts_path(conn, :create), comment: attrs)
       conn = post(conn, Routes.comment_path(conn, :create, post.id), comment: attrs)
