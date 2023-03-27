@@ -21,9 +21,18 @@ defmodule BlogWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    resources "/posts", PostsController
-    post "/posts/:id", CommentController, :create
+    resources "/posts", PostsController, except: [:create]
     resources "/comments", CommentController, except: [:create]
+  end
+
+  scope "/", BlogWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    # TODO: We are supposed to also restrict :new to authenticated users but this caused problem with PostController.show()
+    post "/posts/", PostsController, :create
+
+    get "/comments/new", CommentController, :new
+    post "/posts/:id", CommentController, :create
   end
 
   # Other scopes may use custom stacks.
