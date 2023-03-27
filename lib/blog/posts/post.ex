@@ -6,11 +6,12 @@ defmodule Blog.Posts.Post do
   import Ecto.Changeset
 
   schema "posts" do
-    field :title, :string
-    field :content, :string
-    field :published_on, :date
-    field :visible, :boolean, default: true
-    has_many :comments, Blog.Comments.Comment
+    field(:title, :string)
+    field(:content, :string)
+    field(:published_on, :date)
+    field(:visible, :boolean, default: true)
+    has_many(:comments, Blog.Comments.Comment)
+    belongs_to(:user, Blog.Users.User)
 
     timestamps()
   end

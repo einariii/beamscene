@@ -17,7 +17,6 @@ case "$1" in
 create)
     docker run -d \
         --name blog_db \
-        -v "$LOCAL_PG_DATA":/var/lib/postgresql/data \
         -p "$LOCAL_PG_PORT":5432 \
         -e POSTGRES_USER="$LOCAL_PG_USER" \
         -e POSTGRES_PASSWORD="$LOCAL_PG_PASSWORD" \

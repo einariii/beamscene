@@ -6,8 +6,9 @@ defmodule Blog.Comments.Comment do
   This file sets the comments schema.
   """
   schema "comments" do
-    field :content, :string
-    belongs_to :post, Blog.Posts.Post
+    field(:content, :string)
+    belongs_to(:post, Blog.Posts.Post)
+    belongs_to(:user, Blog.Users.User)
 
     timestamps()
   end
