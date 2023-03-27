@@ -3,6 +3,7 @@ defmodule BlogWeb.CommentControllerTest do
 
   import Blog.CommentsFixtures
   import Blog.PostsFixtures
+  import Blog.AccountsFixtures
   alias Blog.Repo
 
   @create_attrs %{content: "some content"}
@@ -102,7 +103,8 @@ defmodule BlogWeb.CommentControllerTest do
   end
 
   defp create_comment(_) do
-    post = post_fixture()
+    user = user_fixture()
+    post = post_fixture(user_id: user.id)
     comment = comment_fixture(post_id: post.id)
     %{comment: comment}
   end

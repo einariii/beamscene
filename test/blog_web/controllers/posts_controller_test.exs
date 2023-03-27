@@ -2,6 +2,7 @@ defmodule BlogWeb.PostsControllerTest do
   use BlogWeb.ConnCase
 
   import Blog.PostsFixtures
+  import Blog.AccountsFixtures
 
   @create_attrs %{content: "some content", subtitle: "some subtitle", title: "some title"}
   @update_attrs %{
@@ -97,7 +98,8 @@ defmodule BlogWeb.PostsControllerTest do
   end
 
   defp create_post(_) do
-    post = post_fixture()
+    user = user_fixture()
+    post = post_fixture(user_id: user.id)
     %{post: post}
   end
 end
