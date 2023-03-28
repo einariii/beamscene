@@ -21,7 +21,7 @@
   <%= checkbox f, :visible %>
   <%= error_tag f, :visible %>
 
-
+  <%= hidden_input f, :user_id, value: @current_user.id %>
 
   <div>
     <%= submit "Save" %>

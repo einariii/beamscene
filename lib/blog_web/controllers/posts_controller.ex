@@ -21,7 +21,11 @@ defmodule BlogWeb.PostsController do
     render(conn, "new.html", changeset: changeset)
   end
 
+  # TODO consider adding user_id to post_params here instead of in the form
+
   def create(conn, %{"post" => post_params}) do
+    # user_id = conn.assigns[:current_user].id
+    # post_params = Map.put(post_params, "user_id", user_id)
     case Posts.create_post(post_params) do
       {:ok, post} ->
         conn
