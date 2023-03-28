@@ -88,6 +88,9 @@ defmodule BlogWeb.CommentControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, comment: comment} do
+      user = user_fixture()
+      post = post_fixture(user_id: user.id)
+      conn = log_in_user(conn, user)
       conn = put(conn, Routes.comment_path(conn, :update, comment), comment: @invalid_attrs)
       assert html_response(conn, 200) =~ "Edit Comment"
     end

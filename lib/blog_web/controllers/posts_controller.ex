@@ -40,8 +40,8 @@ defmodule BlogWeb.PostsController do
   # TODO consider adding user_id to post_params here instead of in the form
 
   def create(conn, %{"post" => post_params}) do
-    # user_id = conn.assigns[:current_user].id
-    # post_params = Map.put(post_params, "user_id", user_id)
+    user_id = conn.assigns[:current_user].id
+    post_params = Map.put(post_params, "user_id", user_id)
     case Posts.create_post(post_params) do
       {:ok, post} ->
         conn
@@ -49,7 +49,7 @@ defmodule BlogWeb.PostsController do
         |> redirect(to: Routes.posts_path(conn, :show, post))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        IO.inspect(changeset, label: "Changeset")
+        # IO.inspect(changeset, label: "Changeset")
         render(conn, "new.html", changeset: changeset)
     end
   end
