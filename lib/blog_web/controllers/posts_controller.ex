@@ -42,6 +42,7 @@ defmodule BlogWeb.PostsController do
   def create(conn, %{"post" => post_params}) do
     user_id = conn.assigns[:current_user].id
     post_params = Map.put(post_params, "user_id", user_id)
+
     case Posts.create_post(post_params) do
       {:ok, post} ->
         conn
@@ -81,6 +82,7 @@ defmodule BlogWeb.PostsController do
   end
 
   def delete(conn, %{"id" => id}) do
+    IO.inspect("Post controller called")
     post = Posts.get_post!(id)
     {:ok, _post} = Posts.delete_post(post)
 

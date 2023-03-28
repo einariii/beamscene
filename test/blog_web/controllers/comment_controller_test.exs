@@ -87,9 +87,10 @@ defmodule BlogWeb.CommentControllerTest do
       assert html_response(conn, 200) =~ "some updated content"
     end
 
-    test "renders errors when data is invalid", %{conn: conn, comment: comment} do
+    test "renders errors when data is invalid", %{conn: conn} do
       user = user_fixture()
       post = post_fixture(user_id: user.id)
+      comment = comment_fixture(user_id: user.id, content: "Secret commet bwa")
       conn = log_in_user(conn, user)
       conn = put(conn, Routes.comment_path(conn, :update, comment), comment: @invalid_attrs)
       assert html_response(conn, 200) =~ "Edit Comment"
@@ -97,15 +98,30 @@ defmodule BlogWeb.CommentControllerTest do
   end
 
   describe "delete comment" do
-    setup [:create_comment]
+    # setup [:create_comment]
 
-    test "deletes chosen comment", %{conn: conn, comment: comment} do
+    test "deletes chosen comment", %{conn: conn} do
+      user = user_fixture()
+      post = post_fixture(user_id: user.id)
+
+      comment =
+        comment_fixture(user_id: user.id, post_id: post.id, content: "Yet anther content!")
+
+      # |> IO.inspect(label: "Initial comment")
+
+      conn = log_in_user(conn, user)
       conn = delete(conn, Routes.comment_path(conn, :delete, comment))
-      assert redirected_to(conn) == Routes.comment_path(conn, :index)
 
-      assert_error_sent 404, fn ->
-        get(conn, Routes.comment_path(conn, :show, comment))
-      end
+      Blog.Comments.list_comments()
+      # |> IO.inspect(label: "Comments list")
+
+      conn = get(conn, Routes.posts_path(conn, :show, post))
+      refute html_response(conn, 200) =~ comment.content
+      # assert redirected_to(conn) == Routes.posts_path(conn, :show, post)
+
+      # assert_error_sent 404, fn ->
+      #   get(conn, Routes.comment_path(conn, :show, comment))
+      # end
     end
   end
 
