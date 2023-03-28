@@ -6,6 +6,22 @@ defmodule BlogWeb.PostsController do
   alias Blog.Posts
   alias Blog.Posts.Post
 
+  plug :require_user_owns_post when action in [:edit, :update, :delete]
+
+  def require_user_owns_post(conn, _opts) do
+    post_id = String.to_integer(conn.path_params["id"])
+    post = Posts.get_post!(post_id)
+
+    if conn.assigns[:current_user].id == post.user_id do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You do not own this resource.")
+      |> redirect(to: Routes.posts_path(conn, :index))
+      |> halt()
+    end
+  end
+
   def index(conn, %{"title" => title}) do
     posts = Posts.list_posts(title)
     render(conn, "index.html", posts: posts)
