@@ -20,6 +20,11 @@ module.exports = {
         'kosugi': ['Kosugi']
       }
     },
+    colors: {
+      'lightsalmon': '#ffa07a',
+      'crimson': '#dc143c',
+      'mediumblue': '#0000cd'
+    }
   },
   plugins: [
     require('@tailwindcss/forms'),

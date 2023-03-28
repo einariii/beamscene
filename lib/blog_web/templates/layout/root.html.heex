@@ -1,68 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <div class="md:flex scale-[.95]">
-  <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="csrf-token" content={csrf_token_value()}>
-    <%= live_title_tag assigns[:page_title] || "Blog", suffix: " · Phoenix Framework" %>
-    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
-    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/vendor/fonts/Jura/jura.css")}/>
-    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/vendor/fonts/Kosugi/kosugi.css")}/>
-    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/js/app.js")}></script>
-  </head>
-  <body class="bg-left-top pt-12 bg-gray-300">
-  <section class="">
-  <p class="text-4xl pt-8 pb-2 font-jura tracking-widest"> B E A M  S C E N E </p>
-  <hr width="200%" color="gray-500" size="50px" align="center" />
-  <p class="text-lg px-8 pb-4 font-kosugi"> Life in the Elixir & Erlang ecosystem.</p>
-</section>
+  <div class="flex scale-[.8]">
+    <head>
+      <meta charset="utf-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta name="csrf-token" content={csrf_token_value()}>
+      <%= live_title_tag assigns[:page_title] || "Blog", suffix: " · Phoenix Framework" %>
+      <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+      <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/vendor/fonts/Jura/jura.css")}/>
+      <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/vendor/fonts/Kosugi/kosugi.css")}/>
+      <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/js/app.js")}></script>
+    </head>
 
-<div class="absolute">
-  <marquee width="60%" direction="up" height="400px">
-  1. The system must be able to handle very large numbers of concurrent activities.<br><br>
-  2. Actions must be performed at a certain point in time or within a certain time.<br><br>
-  3. Systems may be distributed over several computers.<br><br>
-  4. The system is used to control hardware.<br><br>
-  5. The software systems are very large.<br><br>
-  6. The system exhibits complex functionality such as, feature interaction.<br><br>
-  7. The systems should be in continuous operation for many years.<br><br>
-  8. Software maintenance (reconfiguration, etc) should be performed without stopping the system.<br><br>
-  9. There are stringent quality, and reliability requirements.<br><br>
-  10. Fault tolerance both to hardware failures, and software errors, must be provided.<br><br>
+    <body class="bg-left-top pt-12 bg-gray-300">
+      <section class="">
+        <p class="text-5xl pt-8 pb-2 font-jura tracking-widest"> B E A M  S C E N E </p>
+        <hr width="200%" color="gray-500" size="50px" align="center" />
+        <p class="text-lg px-8 pb-4 font-kosugi"> Life in the Elixir & Erlang ecosystem. </p>
+      </section>
 
-  Bjarne Däcker. Concurrent functional programming for telecommunications: A case study of technology introduction. November 2000.
-  Licentiate Thesis.<br><br>
-  </marquee>
-</div>
+      <div class="absolute text-center font-jura">
+        <marquee width="60%" direction="up" height="400px">
+        1. The system must be able to handle very large numbers of concurrent activities.<br><br>
+        2. Actions must be performed at a certain point in time or within a certain time.<br><br>
+        3. Systems may be distributed over several computers.<br><br>
+        4. The system is used to control hardware.<br><br>
+        5. The software systems are very large.<br><br>
+        6. The system exhibits complex functionality such as, feature interaction.<br><br>
+        7. The systems should be in continuous operation for many years.<br><br>
+        8. Software maintenance (reconfiguration, etc) should be performed without stopping the system.<br><br>
+        9. There are stringent quality, and reliability requirements.<br><br>
+        10. Fault tolerance both to hardware failures, and software errors, must be provided.<br><br>
 
-<section class="absolute py-2 flex-wrap grid grid-col-10">
-    <div class="col-span-1">
-      <%= @inner_content %>
-    </div>
+        Bjarne Däcker. Concurrent functional programming for telecommunications: A case study of technology introduction. November 2000.
+        Licentiate Thesis.<br><br>
+        </marquee>
+      </div>
 
-    <article class="text-xl column col-span-9">
-      <ul>
-        <li class="py-2 font-kosugi">
-          <a href="/about">ABOUT</a>
-        </li>
-        <li class="py-2 font-kosugi">
-          <a href="/posts">POSTS</a>
-        </li>
-        <li class="py-2 font-kosugi">
-          <a href="/tags">TAGS</a>
-        </li>
-        <li class="py-2 font-kosugi">
-          <a href="/codezone">CODE ZONE</a>
-        </li>
-        <li class="py-2 font-kosugi">
-          <a href="/webring">WEBRING</a>
-        </li>
-      </ul>
-    </article>
-</section>
+      <section class="absolute py-2 grid grid-col-3">
+          <div class="col-span-1">
+            <%= @inner_content %>
+          </div>
 
-  </body>
+          <article class="text-xl bg-gradient-to-br from-white to-violet-500 col-span-2">
+            <ul>
+              <li class="py-2 font-kosugi">
+                <a href="/about">ABOUT</a>
+              </li>
+              <li class="py-2 font-kosugi">
+                <a href="/posts">POSTS</a>
+              </li>
+              <li class="py-2 font-kosugi">
+                <a href="/tags">TAGS</a>
+              </li>
+              <li class="py-2 font-kosugi">
+                <a href="/codezone">CODE ZONE</a>
+              </li>
+              <li class="py-2 font-kosugi">
+                <a href="/webring">WEBRING</a>
+              </li>
+            </ul>
+          </article>
+      </section>
+
+    </body>
   </div>
 </html>
