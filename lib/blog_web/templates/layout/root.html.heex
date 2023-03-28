@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  <div class="md:flex scale-[.95]">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -13,13 +14,13 @@
   </head>
   <body class="bg-left-top pt-12 bg-gray-300">
   <section class="">
-  <p class="text-5xl p-8 font-jura tracking-widest"> B E A M  S C E N E </p>
-  <hr width="60%" color="gray-500" size="50px" align="center" />
-  <p class="text-2xl px-8 py-4 font-kosugi"> An Elixir & Erlang ecosytem blog.</p>
+  <p class="text-4xl pt-8 pb-2 font-jura tracking-widest"> B E A M  S C E N E </p>
+  <hr width="200%" color="gray-500" size="50px" align="center" />
+  <p class="text-lg px-8 pb-4 font-kosugi"> Life in the Elixir & Erlang ecosystem.</p>
 </section>
 
 <div class="absolute">
-  <marquee width="50%" direction="up" height="400px">
+  <marquee width="60%" direction="up" height="400px">
   1. The system must be able to handle very large numbers of concurrent activities.<br><br>
   2. Actions must be performed at a certain point in time or within a certain time.<br><br>
   3. Systems may be distributed over several computers.<br><br>
@@ -36,28 +37,32 @@
   </marquee>
 </div>
 
-<section class="row py-2 flex-wrap">
-  <article class="text-xl column px-36">
-    <%= @inner_content %>
-    <ul>
-      <li class="py-2 font-kosugi">
-        <a href="/about">ABOUT</a>
-      </li>
-      <li class="py-2 font-kosugi">
-        <a href="/posts">POSTS</a>
-      </li>
-      <li class="py-2 font-kosugi">
-        <a href="/tags">TAGS</a>
-      </li>
-      <li class="py-2 font-kosugi">
-        <a href="/codezone">CODE ZONE</a>
-      </li>
-      <li class="py-2 font-kosugi">
-        <a href="/webring">WEBRING</a>
-      </li>
-    </ul>
-  </article>
+<section class="absolute py-2 flex-wrap grid grid-col-10">
+    <div class="col-span-1">
+      <%= @inner_content %>
+    </div>
+
+    <article class="text-xl column col-span-9">
+      <ul>
+        <li class="py-2 font-kosugi">
+          <a href="/about">ABOUT</a>
+        </li>
+        <li class="py-2 font-kosugi">
+          <a href="/posts">POSTS</a>
+        </li>
+        <li class="py-2 font-kosugi">
+          <a href="/tags">TAGS</a>
+        </li>
+        <li class="py-2 font-kosugi">
+          <a href="/codezone">CODE ZONE</a>
+        </li>
+        <li class="py-2 font-kosugi">
+          <a href="/webring">WEBRING</a>
+        </li>
+      </ul>
+    </article>
 </section>
 
   </body>
+  </div>
 </html>
