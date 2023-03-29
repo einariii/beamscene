@@ -3,7 +3,7 @@ defmodule Blog.MixProject do
 
   @name "Blog"
   @description "Description"
-  @source_url "https://github.com/opanye/blog"
+  @source_url "https://github.com/einariii/blog"
   @version "0.1.0"
 
   def project do

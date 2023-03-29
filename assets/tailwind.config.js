@@ -23,7 +23,12 @@ module.exports = {
     colors: {
       'lightsalmon': '#ffa07a',
       'crimson': '#dc143c',
-      'mediumblue': '#0000cd'
+      'mediumblue': '#0000cd',
+      'lavender': '#F6E8EA',
+      'crayolapink': '#EF626C',
+      'licorice': '#22181C',
+      'jet': '#312F2F',
+      'tiffanyblue': '#84DCCF',
     }
   },
   plugins: [
