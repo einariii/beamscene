@@ -68,9 +68,13 @@ defmodule BlogWeb.CommentControllerTest do
   end
 
   describe "edit comment" do
-    setup [:create_comment]
+    # setup [:create_comment]
 
-    test "renders form for editing chosen comment", %{conn: conn, comment: comment} do
+    test "renders form for editing chosen comment", %{conn: conn} do
+      user = user_fixture()
+      post = post_fixture(user_id: user.id)
+      comment = comment_fixture(post_id: post.id, user_id: user.id)
+      conn = log_in_user(conn, user)
       conn = get(conn, Routes.comment_path(conn, :edit, comment))
       assert html_response(conn, 200) =~ "Edit Comment"
     end

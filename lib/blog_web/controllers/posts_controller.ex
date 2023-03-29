@@ -82,7 +82,7 @@ defmodule BlogWeb.PostsController do
   end
 
   def delete(conn, %{"id" => id}) do
-    IO.inspect("Post controller called")
+    # IO.inspect("Post controller called")
     post = Posts.get_post!(id)
     {:ok, _post} = Posts.delete_post(post)
 

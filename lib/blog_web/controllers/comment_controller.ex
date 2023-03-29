@@ -7,16 +7,16 @@ defmodule BlogWeb.CommentController do
   plug :require_user_owns_comment when action in [:edit, :update, :delete]
 
   def require_user_owns_comment(conn, _opts) do
-    IO.inspect("Being called")
+    # IO.inspect("Being called")
     comment_id = String.to_integer(conn.path_params["id"])
     comment = Comments.get_comment!(comment_id)
     dbg()
 
     if conn.assigns[:current_user].id == comment.user_id do
-      IO.inspect("Being called 2")
+      # IO.inspect("Being called 2")
       conn
     else
-      IO.inspect("Being called 3")
+      # IO.inspect("Being called 3")
 
       conn
       |> put_flash(:error, "You do not own this resource.")
@@ -81,11 +81,11 @@ defmodule BlogWeb.CommentController do
   end
 
   def delete(conn, %{"id" => id} = params) do
-    IO.inspect(params, label: "Params")
+    # IO.inspect(params, label: "Params")
 
     comment =
       Comments.get_comment!(id)
-      |> IO.inspect(label: "The COmment")
+      # |> IO.inspect(label: "The COmment")
 
     {:ok, _comment} = Comments.delete_comment(comment)
 
