@@ -29,6 +29,15 @@
   <span><%= link "Delete", to: Routes.posts_path(@conn, :delete, @post.id), method: :delete, data: [confirm: "Are you sure?"] %></span> |
   <span><%= link "Back", to: Routes.posts_path(@conn, :index) %></span>
 </section>
+<section>
+  <h1> List tags</h1>
+  <%= for tag <- @post.tags do %>
+    <article>
+      <p><%= tag.name %></p>
+    </article>
+  <% end %>
+
+</section>
 
 <section>
   <h1>List Comments</h1>
