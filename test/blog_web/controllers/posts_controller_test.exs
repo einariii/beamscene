@@ -2,6 +2,7 @@ defmodule BlogWeb.PostsControllerTest do
   use BlogWeb.ConnCase
 
   import Blog.PostsFixtures
+  import Blog.AccountsFixtures
 
   @create_attrs %{content: "some content", subtitle: "some subtitle", title: "some title"}
   @update_attrs %{
@@ -10,23 +11,27 @@ defmodule BlogWeb.PostsControllerTest do
     title: "some updated title"
   }
   @invalid_attrs %{content: nil, subtitle: nil, title: nil}
+  setup [:register_and_log_in_user]
 
   describe "index" do
     test "lists all posts", %{conn: conn} do
-      post = post_fixture()
+      user = user_fixture()
+      post = post_fixture(user_id: user.id)
       conn = get(conn, Routes.posts_path(conn, :index))
       assert html_response(conn, 200) =~ post.title
       assert html_response(conn, 200) =~ "Search Posts"
     end
 
     test "lists all posts _ matching search query", %{conn: conn} do
-      post = post_fixture(title: "Yo! The crazy blog")
+      user = user_fixture()
+      post = post_fixture(user_id: user.id, title: "Yo! The crazy blog")
       conn = get(conn, Routes.posts_path(conn, :index, title: post.title))
       assert html_response(conn, 200) =~ post.title
     end
 
     test "lists all posts _ not matching search query", %{conn: conn} do
-      post = post_fixture(title: "Generic Servers")
+      user = user_fixture()
+      post = post_fixture(user_id: user.id, title: "Generic Servers")
       conn = get(conn, Routes.posts_path(conn, :index, title: "The usual suspects"))
       refute html_response(conn, 200) =~ post.title
     end
@@ -41,7 +46,9 @@ defmodule BlogWeb.PostsControllerTest do
 
   describe "create post" do
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.posts_path(conn, :create), post: @create_attrs)
+      user = user_fixture()
+      attributes = Map.put(@create_attrs, :user_id, user.id)
+      conn = post(conn, Routes.posts_path(conn, :create), post: attributes)
       assert get_flash(conn, :info) == "Post created successfully."
 
       assert %{id: id} = redirected_params(conn)
@@ -58,18 +65,24 @@ defmodule BlogWeb.PostsControllerTest do
   end
 
   describe "edit post" do
-    setup [:create_post]
+    # setup [:create_post]
 
-    test "renders form for editing chosen post", %{conn: conn, post: post} do
+    test "renders form for editing chosen post", %{conn: conn} do
+      user = user_fixture()
+      post = post_fixture(user_id: user.id)
+      conn = log_in_user(conn, user)
       conn = get(conn, Routes.posts_path(conn, :edit, post))
       assert html_response(conn, 200) =~ "Edit Post"
     end
   end
 
   describe "update post" do
-    setup [:create_post]
+    # setup [:create_post]
 
-    test "redirects when data is valid", %{conn: conn, post: post} do
+    test "redirects when data is valid", %{conn: conn} do
+      user = user_fixture()
+      post = post_fixture(user_id: user.id)
+      conn = log_in_user(conn, user)
       conn = put(conn, Routes.posts_path(conn, :update, post), post: @update_attrs)
       assert redirected_to(conn) == Routes.posts_path(conn, :show, post)
 
@@ -77,16 +90,22 @@ defmodule BlogWeb.PostsControllerTest do
       assert html_response(conn, 200) =~ "some updated content"
     end
 
-    test "renders errors when data is invalid", %{conn: conn, post: post} do
+    test "renders errors when data is invalid", %{conn: conn} do
+      user = user_fixture()
+      post = post_fixture(user_id: user.id)
+      conn = log_in_user(conn, user)
       conn = put(conn, Routes.posts_path(conn, :update, post), post: @invalid_attrs)
       assert html_response(conn, 200) =~ "Edit Post"
     end
   end
 
   describe "delete post" do
-    setup [:create_post]
+    setup [:create_post, :register_and_log_in_user]
 
     test "deletes chosen post", %{conn: conn, post: post} do
+      user = user_fixture()
+      post = post_fixture(user_id: user.id)
+      conn = log_in_user(conn, user)
       conn = delete(conn, Routes.posts_path(conn, :delete, post))
       assert redirected_to(conn) == Routes.posts_path(conn, :index)
 
@@ -97,7 +116,8 @@ defmodule BlogWeb.PostsControllerTest do
   end
 
   defp create_post(_) do
-    post = post_fixture()
+    user = user_fixture()
+    post = post_fixture(user_id: user.id)
     %{post: post}
   end
 end
