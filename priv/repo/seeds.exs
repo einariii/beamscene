@@ -14,6 +14,8 @@ alias Blog.Posts
 alias Blog.Repo
 alias Blog.Posts.Post
 alias Blog.Accounts
+alias Blog.Tags
+alias Blog.Tags.Tag
 
 # Delete existing posts
 Repo.delete_all(Post)
@@ -47,3 +49,15 @@ Repo.insert(%Post{
   content: "Please send help.",
   published_on: Date.add(Date.utc_today(), 10)
 })
+
+# Create tags
+["erlang", "elixir", "gleam", "luerl"]
+|> Enum.each(fn tag_name ->
+  case Repo.get_by(Tag, name: tag_name) do
+    %Tag{} = tag ->
+      IO.inspect(tag_name, label: "Tag Already Created")
+
+    nil ->
+      Tags.create_tag(%{name: tag_name})
+  end
+end)

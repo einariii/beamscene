@@ -21,6 +21,7 @@ defmodule BlogWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/tags", TagController, :index
     resources "/posts", PostsController, except: [:create]
     resources "/comments", CommentController, except: [:create]
   end
@@ -83,6 +84,12 @@ defmodule BlogWeb.Router do
     post "/users/reset_password", UserResetPasswordController, :create
     get "/users/reset_password/:token", UserResetPasswordController, :edit
     put "/users/reset_password/:token", UserResetPasswordController, :update
+  end
+
+  scope "/", BlogWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    resources "/tags", TagController
   end
 
   scope "/", BlogWeb do

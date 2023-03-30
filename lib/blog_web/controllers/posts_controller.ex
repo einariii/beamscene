@@ -5,6 +5,7 @@ defmodule BlogWeb.PostsController do
   alias Blog.Comments.Comment
   alias Blog.Posts
   alias Blog.Posts.Post
+  alias Blog.Tags
 
   plug :require_user_owns_post when action in [:edit, :update, :delete]
 
@@ -40,10 +41,13 @@ defmodule BlogWeb.PostsController do
   # TODO consider adding user_id to post_params here instead of in the form
 
   def create(conn, %{"post" => post_params}) do
+    # IO.inspect(post_params, label: "Good params")
     user_id = conn.assigns[:current_user].id
     post_params = Map.put(post_params, "user_id", user_id)
+    {tag_ids, post_params} = Map.pop(post_params, "tags", [])
+    tags = Enum.map(tag_ids, &Tags.get_tag!/1)
 
-    case Posts.create_post(post_params) do
+    case Posts.create_post(post_params, tags) do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post created successfully.")
@@ -56,7 +60,7 @@ defmodule BlogWeb.PostsController do
   end
 
   def show(conn, %{"id" => id}) do
-    post = Posts.get_post!(id) |> Blog.Repo.preload([:comments])
+    post = Posts.get_post!(id) |> Blog.Repo.preload([:comments, :tags])
     comment_changeset = Comments.change_comment(%Comment{})
     render(conn, "show.html", post: post, comment_changeset: comment_changeset)
   end
@@ -70,7 +74,10 @@ defmodule BlogWeb.PostsController do
   def update(conn, %{"id" => id, "post" => post_params}) do
     post = Posts.get_post!(id)
 
-    case Posts.update_post(post, post_params) do
+    {tag_ids, post_params} = Map.pop(post_params, "tags", [])
+    tags = Enum.map(tag_ids, &Tags.get_tag!/1)
+
+    case Posts.update_post(post, post_params, tags) do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post updated successfully.")

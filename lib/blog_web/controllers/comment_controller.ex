@@ -10,7 +10,6 @@ defmodule BlogWeb.CommentController do
     # IO.inspect("Being called")
     comment_id = String.to_integer(conn.path_params["id"])
     comment = Comments.get_comment!(comment_id)
-    dbg()
 
     if conn.assigns[:current_user].id == comment.user_id do
       # IO.inspect("Being called 2")
