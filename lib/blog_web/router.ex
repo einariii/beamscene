@@ -18,29 +18,47 @@ defmodule BlogWeb.Router do
   end
 
   scope "/", BlogWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    get "/posts/new", PostsController, :new
+    get "/posts/edit/:id", PostsController, :edit
+    post "/posts", PostsController, :create
+    put "/posts/:id", PostsController, :update
+    patch "/posts/:id", PostsController, :update
+    delete "/posts/:id", PostsController, :delete
+
+    get "/comments/new", CommentController, :new
+    get "/comments/edit/:id", CommentController, :edit
+    post "/comments", CommentController, :create
+    put "/comments/:id", CommentController, :update
+    patch "/comments/:id", CommentController, :update
+    delete "/comments/:id", CommentController, :delete
+  end
+
+  scope "/", BlogWeb do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/posts", PostsController, :index
+    get "/posts/:id", PostsController, :show
+
+    get "/comments", CommentController, :index
+    get "/comments/:id", CommentController, :show
+
     get "/tags", TagController, :index
-    resources "/posts", PostsController, except: [:create]
-    resources "/comments", CommentController, except: [:create]
   end
+
 
   scope "/", BlogWeb do
     pipe_through [:browser, :require_authenticated_user]
 
-    # TODO: We are supposed to also restrict :new to authenticated users but this caused problem with PostController.show()
-    post "/posts/", PostsController, :create
-
-    get "/comments/new", CommentController, :new
-    post "/posts/:id", CommentController, :create
-    get "/posts/new", PostsController, :new
+    resources "/tags", TagController
   end
-
+  
   # Other scopes may use custom stacks.
   # scope "/api", BlogWeb do
-  #   pipe_through :api
-  # end
+    #   pipe_through :api
+    # end
 
   # Enables LiveDashboard only for development
   #
@@ -86,11 +104,6 @@ defmodule BlogWeb.Router do
     put "/users/reset_password/:token", UserResetPasswordController, :update
   end
 
-  scope "/", BlogWeb do
-    pipe_through [:browser, :require_authenticated_user]
-
-    resources "/tags", TagController
-  end
 
   scope "/", BlogWeb do
     pipe_through [:browser, :require_authenticated_user]

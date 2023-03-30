@@ -45,7 +45,7 @@ defmodule BlogWeb.CommentControllerTest do
         |> Blog.Repo.preload([:comments])
 
       conn =
-        post(conn, Routes.comment_path(conn, :create, post.id),
+        post(conn, Routes.comment_path(conn, :create),
           comment: %{"user_id" => user.id, "post_id" => post.id, content: "A top comment"}
         )
 
@@ -62,7 +62,7 @@ defmodule BlogWeb.CommentControllerTest do
       post = post_fixture(user_id: user.id) |> Repo.preload([:comments])
       attrs = Map.put(@invalid_attrs, :post_id, post.id)
       # conn = post(conn, Routes.posts_path(conn, :create), comment: attrs)
-      conn = post(conn, Routes.comment_path(conn, :create, post.id), comment: attrs)
+      conn = post(conn, Routes.comment_path(conn, :create), comment: attrs)
       assert html_response(conn, 200) =~ "can&#39;t be blank"
     end
   end

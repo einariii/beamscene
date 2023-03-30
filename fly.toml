@@ -1,0 +1,33 @@
+# fly.toml file generated for beamscene on 2023-03-30T14:54:58-04:00
+
+app = "beamscene"
+kill_signal = "SIGTERM"
+kill_timeout = 5
+mounts = []
+primary_region = "yyz"
+processes = []
+
+[deploy]
+  release_command = "/app/bin/migrate"
+
+[env]
+  PHX_HOST = "beamscene.fly.dev"
+  PORT = "8080"
+
+[[services]]
+  internal_port = 8080
+  processes = ["app"]
+  protocol = "tcp"
+  [services.concurrency]
+    hard_limit = 1000
+    soft_limit = 1000
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443

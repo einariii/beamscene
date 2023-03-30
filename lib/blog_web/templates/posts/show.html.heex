@@ -53,7 +53,7 @@
 
 <section>
   <h1>Add a Comment</h1>
-  <%= form_for @comment_changeset, Routes.comment_path(@conn, :create, @post.id), fn f -> %>
+  <%= form_for @comment_changeset, Routes.comment_path(@conn, :create), fn f -> %>
     <%!-- <%= if @changeset.action do %>
       <div class="alert alert-danger">
         <p>Oops, something went wrong! Please check the errors below.</p>
