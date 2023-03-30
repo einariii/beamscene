@@ -19,6 +19,7 @@ defmodule Blog.Posts do
   """
   def list_posts do
     Repo.all(Post)
+    |> Repo.preload([:tags])
   end
 
   def list_posts(title) do
@@ -27,6 +28,7 @@ defmodule Blog.Posts do
     Post
     |> where([post], ilike(post.title, ^search))
     |> Repo.all()
+    |> Repo.preload([:tags])
   end
 
   @doc """

@@ -2,6 +2,7 @@ defmodule BlogWeb.TagControllerTest do
   use BlogWeb.ConnCase
 
   import Blog.TagsFixtures
+  import Blog.AccountsFixtures
 
   @create_attrs %{name: "some name"}
   @update_attrs %{name: "some updated name"}
@@ -16,6 +17,8 @@ defmodule BlogWeb.TagControllerTest do
 
   describe "new tag" do
     test "renders form", %{conn: conn} do
+      user = user_fixture()
+      conn = log_in_user(conn, user)
       conn = get(conn, Routes.tag_path(conn, :new))
       assert html_response(conn, 200) =~ "New Tag"
     end
@@ -23,6 +26,8 @@ defmodule BlogWeb.TagControllerTest do
 
   describe "create tag" do
     test "redirects to show when data is valid", %{conn: conn} do
+      user = user_fixture()
+      conn = log_in_user(conn, user)
       conn = post(conn, Routes.tag_path(conn, :create), tag: @create_attrs)
 
       assert %{id: id} = redirected_params(conn)
@@ -33,6 +38,8 @@ defmodule BlogWeb.TagControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
+      user = user_fixture()
+      conn = log_in_user(conn, user)
       conn = post(conn, Routes.tag_path(conn, :create), tag: @invalid_attrs)
       assert html_response(conn, 200) =~ "New Tag"
     end
@@ -42,6 +49,8 @@ defmodule BlogWeb.TagControllerTest do
     setup [:create_tag]
 
     test "renders form for editing chosen tag", %{conn: conn, tag: tag} do
+      user = user_fixture()
+      conn = log_in_user(conn, user)
       conn = get(conn, Routes.tag_path(conn, :edit, tag))
       assert html_response(conn, 200) =~ "Edit Tag"
     end
@@ -51,6 +60,8 @@ defmodule BlogWeb.TagControllerTest do
     setup [:create_tag]
 
     test "redirects when data is valid", %{conn: conn, tag: tag} do
+      user = user_fixture()
+      conn = log_in_user(conn, user)
       conn = put(conn, Routes.tag_path(conn, :update, tag), tag: @update_attrs)
       assert redirected_to(conn) == Routes.tag_path(conn, :show, tag)
 
@@ -59,6 +70,8 @@ defmodule BlogWeb.TagControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, tag: tag} do
+      user = user_fixture()
+      conn = log_in_user(conn, user)
       conn = put(conn, Routes.tag_path(conn, :update, tag), tag: @invalid_attrs)
       assert html_response(conn, 200) =~ "Edit Tag"
     end
@@ -68,6 +81,8 @@ defmodule BlogWeb.TagControllerTest do
     setup [:create_tag]
 
     test "deletes chosen tag", %{conn: conn, tag: tag} do
+      user = user_fixture()
+      conn = log_in_user(conn, user)
       conn = delete(conn, Routes.tag_path(conn, :delete, tag))
       assert redirected_to(conn) == Routes.tag_path(conn, :index)
 
