@@ -52,7 +52,7 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 67% 30%, hsl(17, 100%, 74%), #dc143c);
+  background: radial-gradient(circle at 67% 30%, rgb(255, 160, 122), #dc143c);
   mix-blend-mode: multiply;
 }
 
