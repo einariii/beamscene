@@ -44,7 +44,6 @@
   <%= for comment <- @post.comments do %>
     <article>
       <p><%= comment.content %></p>
-      <p><%= comment.user_id %></p>
     </article>
   <span><%= link "Edit", to: Routes.comment_path(@conn, :edit, comment) %></span> |
   <span><%= link "Delete", to: Routes.comment_path(@conn, :delete, comment.id), method: :delete, data: [confirm: "Are you sure?"] %></span>
