@@ -1,6 +1,8 @@
 defmodule BlogWeb.Router do
   use BlogWeb, :router
 
+  import BlogWeb.UserAuth
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -8,6 +10,7 @@ defmodule BlogWeb.Router do
     plug :put_root_layout, {BlogWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :fetch_current_user
   end
 
   pipeline :api do
@@ -15,18 +18,47 @@ defmodule BlogWeb.Router do
   end
 
   scope "/", BlogWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    get "/posts/new", PostsController, :new
+    get "/posts/edit/:id", PostsController, :edit
+    post "/posts", PostsController, :create
+    put "/posts/:id", PostsController, :update
+    patch "/posts/:id", PostsController, :update
+    delete "/posts/:id", PostsController, :delete
+
+    get "/comments/new", CommentController, :new
+    get "/comments/edit/:id", CommentController, :edit
+    post "/comments", CommentController, :create
+    put "/comments/:id", CommentController, :update
+    patch "/comments/:id", CommentController, :update
+    delete "/comments/:id", CommentController, :delete
+  end
+
+  scope "/", BlogWeb do
     pipe_through :browser
 
     get "/", PageController, :index
-    resources "/posts", PostsController
-    post "/posts/:id", CommentController, :create
-    resources "/comments", CommentController, except: [:create]
+    get "/posts", PostsController, :index
+    get "/posts/:id", PostsController, :show
+
+    get "/comments", CommentController, :index
+    get "/comments/:id", CommentController, :show
+
+    get "/tags", TagController, :index
   end
 
+
+  scope "/", BlogWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    resources "/tags", TagController
+  end
+  
   # Other scopes may use custom stacks.
   # scope "/api", BlogWeb do
-  #   pipe_through :api
-  # end
+    #   pipe_through :api
+    # end
 
   # Enables LiveDashboard only for development
   #
@@ -55,5 +87,39 @@ defmodule BlogWeb.Router do
 
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
+  end
+
+  ## Authentication routes
+
+  scope "/", BlogWeb do
+    pipe_through [:browser, :redirect_if_user_is_authenticated]
+
+    get "/users/register", UserRegistrationController, :new
+    post "/users/register", UserRegistrationController, :create
+    get "/users/log_in", UserSessionController, :new
+    post "/users/log_in", UserSessionController, :create
+    get "/users/reset_password", UserResetPasswordController, :new
+    post "/users/reset_password", UserResetPasswordController, :create
+    get "/users/reset_password/:token", UserResetPasswordController, :edit
+    put "/users/reset_password/:token", UserResetPasswordController, :update
+  end
+
+
+  scope "/", BlogWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    get "/users/settings", UserSettingsController, :edit
+    put "/users/settings", UserSettingsController, :update
+    get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
+  end
+
+  scope "/", BlogWeb do
+    pipe_through [:browser]
+
+    delete "/users/log_out", UserSessionController, :delete
+    get "/users/confirm", UserConfirmationController, :new
+    post "/users/confirm", UserConfirmationController, :create
+    get "/users/confirm/:token", UserConfirmationController, :edit
+    post "/users/confirm/:token", UserConfirmationController, :update
   end
 end
