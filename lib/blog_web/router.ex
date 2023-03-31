@@ -48,17 +48,16 @@ defmodule BlogWeb.Router do
     get "/tags", TagController, :index
   end
 
-
   scope "/", BlogWeb do
     pipe_through [:browser, :require_authenticated_user]
 
     resources "/tags", TagController
   end
-  
+
   # Other scopes may use custom stacks.
   # scope "/api", BlogWeb do
-    #   pipe_through :api
-    # end
+  #   pipe_through :api
+  # end
 
   # Enables LiveDashboard only for development
   #
@@ -103,7 +102,6 @@ defmodule BlogWeb.Router do
     get "/users/reset_password/:token", UserResetPasswordController, :edit
     put "/users/reset_password/:token", UserResetPasswordController, :update
   end
-
 
   scope "/", BlogWeb do
     pipe_through [:browser, :require_authenticated_user]
