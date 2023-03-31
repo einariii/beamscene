@@ -26,7 +26,17 @@
   </ul>
 
   <span><%= link "Edit", to: Routes.posts_path(@conn, :edit, @post) %></span> |
+  <span><%= link "Delete", to: Routes.posts_path(@conn, :delete, @post.id), method: :delete, data: [confirm: "Are you sure?"] %></span> |
   <span><%= link "Back", to: Routes.posts_path(@conn, :index) %></span>
+</section>
+<section>
+  <h1> List tags</h1>
+  <%= for tag <- @post.tags do %>
+    <article>
+      <p><%= tag.name %></p>
+    </article>
+  <% end %>
+
 </section>
 
 <section>
@@ -35,12 +45,14 @@
     <article>
       <p><%= comment.content %></p>
     </article>
+  <span><%= link "Edit", to: Routes.comment_path(@conn, :edit, comment) %></span> |
+  <span><%= link "Delete", to: Routes.comment_path(@conn, :delete, comment.id), method: :delete, data: [confirm: "Are you sure?"] %></span>
   <% end %>
 </section>
 
 <section>
   <h1>Add a Comment</h1>
-  <%= form_for @comment_changeset, Routes.comment_path(@conn, :create, @post.id), fn f -> %>
+  <%= form_for @comment_changeset, Routes.comment_path(@conn, :create), fn f -> %>
     <%!-- <%= if @changeset.action do %>
       <div class="alert alert-danger">
         <p>Oops, something went wrong! Please check the errors below.</p>

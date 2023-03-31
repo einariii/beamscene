@@ -5,6 +5,23 @@ defmodule BlogWeb.PostsController do
   alias Blog.Comments.Comment
   alias Blog.Posts
   alias Blog.Posts.Post
+  alias Blog.Tags
+
+  plug :require_user_owns_post when action in [:edit, :update, :delete]
+
+  def require_user_owns_post(conn, _opts) do
+    post_id = String.to_integer(conn.path_params["id"])
+    post = Posts.get_post!(post_id)
+
+    if conn.assigns[:current_user].id == post.user_id do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You do not own this resource.")
+      |> redirect(to: Routes.posts_path(conn, :index))
+      |> halt()
+    end
+  end
 
   def index(conn, %{"title" => title}) do
     posts = Posts.list_posts(title)
@@ -21,20 +38,29 @@ defmodule BlogWeb.PostsController do
     render(conn, "new.html", changeset: changeset)
   end
 
+  # TODO consider adding user_id to post_params here instead of in the form
+
   def create(conn, %{"post" => post_params}) do
-    case Posts.create_post(post_params) do
+    # IO.inspect(post_params, label: "Good params")
+    user_id = conn.assigns[:current_user].id
+    post_params = Map.put(post_params, "user_id", user_id)
+    {tag_ids, post_params} = Map.pop(post_params, "tags", [])
+    tags = Enum.map(tag_ids, &Tags.get_tag!/1)
+
+    case Posts.create_post(post_params, tags) do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post created successfully.")
         |> redirect(to: Routes.posts_path(conn, :show, post))
 
       {:error, %Ecto.Changeset{} = changeset} ->
+        # IO.inspect(changeset, label: "Changeset")
         render(conn, "new.html", changeset: changeset)
     end
   end
 
   def show(conn, %{"id" => id}) do
-    post = Posts.get_post!(id) |> Blog.Repo.preload([:comments])
+    post = Posts.get_post!(id) |> Blog.Repo.preload([:comments, :tags])
     comment_changeset = Comments.change_comment(%Comment{})
     render(conn, "show.html", post: post, comment_changeset: comment_changeset)
   end
@@ -48,7 +74,10 @@ defmodule BlogWeb.PostsController do
   def update(conn, %{"id" => id, "post" => post_params}) do
     post = Posts.get_post!(id)
 
-    case Posts.update_post(post, post_params) do
+    {tag_ids, post_params} = Map.pop(post_params, "tags", [])
+    tags = Enum.map(tag_ids, &Tags.get_tag!/1)
+
+    case Posts.update_post(post, post_params, tags) do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post updated successfully.")
@@ -60,6 +89,7 @@ defmodule BlogWeb.PostsController do
   end
 
   def delete(conn, %{"id" => id}) do
+    # IO.inspect("Post controller called")
     post = Posts.get_post!(id)
     {:ok, _post} = Posts.delete_post(post)
 
