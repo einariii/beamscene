@@ -13,15 +13,15 @@
       <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/js/app.js")}></script>
     </head>
 
-    <body class="bg-left-top pt-12 font-extrabold text-tiffanyblue  hover:text-jet bg-crayolapink">
+    <body class="bg-left-top pt-12 font-extrabold text-jet bg-crayolapink">
       <section class="">
-        <p class="text-5xl pt-8 pb-2 font-jura tracking-widest"> B E A M  S C E N E </p>
+        <p class="text-7xl pt-8 pb-2 font-jura tracking-widest"> B E A M  S C E N E </p>
         <hr width="200%" color="gray-500" size="50px" align="center" />
-        <p class="text-lg px-8 pb-4 font-kosugi"> Life in the Elixir & Erlang ecosystem. </p>
+        <p class="text-2xl px-8 pb-4 font-kosugi"> Life in the Elixir & Erlang ecosystem. </p>
       </section>
 
-      <div class="absolute text-center text-lavender  hover:text-jet font-jura">
-        <marquee width="60%" direction="up" height="400px">
+      <div class="absolute text-center text-jet font-jura">
+        <marquee width="60%" direction="up" height="1000px">
         1. The system must be able to handle very large numbers of concurrent activities.<br><br>
         2. Actions must be performed at a certain point in time or within a certain time.<br><br>
         3. Systems may be distributed over several computers.<br><br>
@@ -38,26 +38,26 @@
         </marquee>
       </div>
 
-      <section class="absolute py-2 grid grid-col-3 text-tiffanyblue hover:text-jet">
+      <section class="absolute py-2 grid grid-col-3 text-jet">
           <div class="col-span-1">
             <%= @inner_content %>
           </div>
 
-          <article class="text-xl bg-gradient-to-br from-white to-violet-500 col-span-2">
+          <article class="font-kosugi text-xl bg-gradient-to-br from-white to-violet-500 col-span-2">
             <ul>
-              <li class="py-2 font-kosugi">
+              <li class="py-2 hover:text-tiffanyblue">
                 <a href="/about">ABOUT</a>
               </li>
-              <li class="py-2 font-kosugi">
+              <li class="py-2 hover:text-tiffanyblue">
                 <a href="/posts">POSTS</a>
               </li>
-              <li class="py-2 font-kosugi">
+              <li class="py-2 hover:text-tiffanyblue">
                 <a href="/tags">TAGS</a>
               </li>
-              <li class="py-2 font-kosugi">
+              <li class="py-2 hover:text-tiffanyblue">
                 <a href="/codezone">CODE ZONE</a>
               </li>
-              <li class="py-2 font-kosugi">
+              <li class="py-2 hover:text-tiffanyblue">
                 <a href="/webring">WEBRING</a>
               </li>
             </ul>
