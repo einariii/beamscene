@@ -38,11 +38,7 @@
         </marquee>
       </div>
 
-      <section class="absolute py-2 grid grid-col-3 text-jet">
-          <div class="col-span-1">
-            <%= @inner_content %>
-          </div>
-
+      <section class="absolute py-56 grid grid-col-3 text-jet">
           <article class="font-kosugi text-xl bg-gradient-to-br from-white to-violet-500 col-span-2">
             <ul>
               <li class="py-2 hover:text-tiffanyblue">
@@ -61,12 +57,16 @@
                 <a href="/webring">WEBRING</a>
               </li>
                <li class="py-2 hover:text-tiffanyblue">
-                <a href="/webring">GUESTBOOK</a>
+                <a href="/guestbook">GUESTBOOK</a>
               </li>
                <li class="py-2 hover:text-tiffanyblue">
-                <a href="/webring">LOGIN</a>
+                <a href="/login">LOGIN</a>
               </li>
             </ul>
+
+            <aside class="col-span-1">
+              <%= @inner_content %>
+            </aside>
           </article>
       </section>
     </body>
