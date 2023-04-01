@@ -9,7 +9,7 @@ defmodule BlogWeb.Router do
     plug :fetch_live_flash
     plug :put_root_layout, {BlogWeb.LayoutView, :root}
     plug :protect_from_forgery
-    plug :put_secure_browser_headers
+    plug :put_secure_browser_headers, %{"content-security-policy" => "default-src 'self'"}
     plug :fetch_current_user
   end
 
@@ -51,7 +51,7 @@ defmodule BlogWeb.Router do
   scope "/", BlogWeb do
     pipe_through [:browser, :require_authenticated_user]
 
-    resources "/tags", TagController
+    resources "/tags", TagController, except: [:index]
   end
 
   # Other scopes may use custom stacks.
