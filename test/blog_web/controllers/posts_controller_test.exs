@@ -100,9 +100,7 @@ defmodule BlogWeb.PostsControllerTest do
   end
 
   describe "delete post" do
-    setup [:create_post, :register_and_log_in_user]
-
-    test "deletes chosen post", %{conn: conn, post: post} do
+    test "deletes chosen post", %{conn: conn} do
       user = user_fixture()
       post = post_fixture(user_id: user.id)
       conn = log_in_user(conn, user)
@@ -113,11 +111,5 @@ defmodule BlogWeb.PostsControllerTest do
         get(conn, Routes.posts_path(conn, :show, post))
       end
     end
-  end
-
-  defp create_post(_) do
-    user = user_fixture()
-    post = post_fixture(user_id: user.id)
-    %{post: post}
   end
 end
