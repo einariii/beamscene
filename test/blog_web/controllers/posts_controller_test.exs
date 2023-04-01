@@ -16,24 +16,39 @@ defmodule BlogWeb.PostsControllerTest do
   describe "index" do
     test "lists all posts", %{conn: conn} do
       user = user_fixture()
-      post = post_fixture(user_id: user.id)
+      post = post_fixture(user_id: user.id, published_on: Date.utc_today())
       conn = get(conn, Routes.posts_path(conn, :index))
       assert html_response(conn, 200) =~ post.title
       assert html_response(conn, 200) =~ "Search Posts"
     end
 
     test "posts with a future published on date are not listed", %{conn: conn} do
-      post = post_fixture(title: "zbrBrfmrrxrrr! future me", published_on: Faker.Date.forward(90))
+      user = user_fixture()
+      conn = log_in_user(conn, user)
+
+      post =
+        post_fixture(
+          user_id: user.id,
+          title: "zbrBrfmrrxrrr! future me",
+          published_on: Faker.Date.forward(90)
+        )
+
       conn = get(conn, Routes.posts_path(conn, :index))
       assert html_response(conn, 200) =~ "Search Posts"
       refute html_response(conn, 200) =~ post.title
     end
 
     test "posts with visibility set to false are not listed", %{conn: conn} do
-      date = Date.utc_today()
+      user = user_fixture()
+      conn = log_in_user(conn, user)
 
       post =
-        post_fixture(title: "zbrBrfmrrxrrr! invisible me", visible: false, published_on: date)
+        post_fixture(
+          user_id: user.id,
+          title: "zbrBrfmrrxrrr! invisible me",
+          visible: false,
+          published_on: Date.utc_today()
+        )
 
       conn = get(conn, Routes.posts_path(conn, :index))
       assert html_response(conn, 200) =~ "Search Posts"
@@ -42,7 +57,15 @@ defmodule BlogWeb.PostsControllerTest do
 
     test "lists all posts _ matching search query", %{conn: conn} do
       user = user_fixture()
-      post = post_fixture(user_id: user.id, title: "Yo! The crazy blog")
+      conn = log_in_user(conn, user)
+
+      post =
+        post_fixture(
+          user_id: user.id,
+          title: "Yo! The crazy blog",
+          published_on: Date.utc_today()
+        )
+
       conn = get(conn, Routes.posts_path(conn, :index, title: post.title))
       assert html_response(conn, 200) =~ post.title
     end
