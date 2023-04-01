@@ -6,7 +6,7 @@ defmodule BlogWeb.CommentControllerTest do
   import Blog.AccountsFixtures
   alias Blog.Repo
 
-  @create_attrs %{content: "some content"}
+  # @create_attrs %{content: "some content"}
   @update_attrs %{content: "some updated content"}
   @invalid_attrs %{content: nil}
 
