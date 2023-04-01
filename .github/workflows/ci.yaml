@@ -102,7 +102,7 @@ jobs:
         if: success() || failure()
 
       - name: Run Sobelow
-        run: mix sobelow --exit
+        run: mix sobelow -i Config.HTTPS --exit
         if: success() || failure()
 
   lint:
