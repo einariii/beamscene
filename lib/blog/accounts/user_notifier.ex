@@ -1,7 +1,10 @@
 defmodule Blog.Accounts.UserNotifier do
   import Swoosh.Email
-
   alias Blog.Mailer
+
+  @moduledoc """
+  This module contains functions for communicating with users.
+  """
 
   # Delivers the email using the application mailer.
   defp deliver(recipient, subject, body) do

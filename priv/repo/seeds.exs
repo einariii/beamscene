@@ -10,12 +10,50 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
+alias Blog.Accounts
+alias Blog.Accounts.User
+alias Blog.Comments.Comment
 alias Blog.Posts
 alias Blog.Posts.Post
-alias Blog.Comments.Comment
 alias Blog.Repo
+alias Blog.Tags
+alias Blog.Tags.Tag
 
-# A blog post without any comments
+## Seed Default Tags in database
+tags = ["erlang", "elixir", "gleam", "luerl"]
+
+Enum.each(tags, fn tag_name ->
+  case Repo.get_by(Tag, name: tag_name) do
+    %Tag{} = _tag ->
+      IO.inspect(tag_name, label: "Tag Already Created")
+
+    nil ->
+      Tags.create_tag(%{name: tag_name})
+  end
+end)
+
+## Create 2 default users
+{:ok, user1} =
+  case Repo.get_by(User, email: "test@test.com") do
+    %Post{} = post ->
+      IO.inspect(post.title, label: "User Already Created")
+
+    nil ->
+      user_attrs = %{email: "test@test.com", password: "password123!"}
+      Accounts.register_user(user_attrs)
+  end
+
+{:ok, user2} =
+  case Repo.get_by(User, email: "email@email.com") do
+    %Post{} = post ->
+      IO.inspect(post.title, label: "User Already Created")
+
+    nil ->
+      user_attrs = %{email: "email@email.com", password: "password123!"}
+      Accounts.register_user(user_attrs)
+  end
+
+## A blog post without any comments
 title = "I killed a process and that's ok"
 
 case Repo.get_by(Post, title: title) do
@@ -25,10 +63,10 @@ case Repo.get_by(Post, title: title) do
   nil ->
     content = "You can kill my processes but I'll only get stronger. You heard me? Stronger!"
     date = Date.utc_today()
-    Posts.create_post(%{title: title, content: content, published_on: date})
+    Posts.create_post(%{user_id: user1.id, title: title, content: content, published_on: date})
 end
 
-# A blog post with an associated comment
+## A blog post with an associated comment
 title = "You wouldn't exist without Erlang"
 
 {:ok, post} =
@@ -42,7 +80,7 @@ title = "You wouldn't exist without Erlang"
         "The Erlang programmer's girlfriend left him because she couldn't handle his high concurrency."
 
       date = Date.utc_today()
-      Posts.create_post(%{title: title, content: content, published_on: date})
+      Posts.create_post(%{user_id: user1.id, title: title, content: content, published_on: date})
   end
 
 content = "She couldn't find her way out of all the recursion as well."
@@ -53,7 +91,7 @@ case Repo.get_by(Comment, content: content) do
 
   nil ->
     %Comment{}
-    |> Comment.changeset(%{content: content, post_id: post.id})
+    |> Comment.changeset(%{user_id: user2.id, content: content, post_id: post.id})
     |> Repo.insert!()
 end
 
@@ -69,7 +107,14 @@ case Repo.get_by(Post, title: title) do
       "Why did the Erlang programmer refuse to get on the airplane? He didn't want to deal with all the crashing."
 
     date = Date.utc_today()
-    Posts.create_post(%{title: title, content: content, published_on: date, visible: false})
+
+    Posts.create_post(%{
+      user_id: user1.id,
+      title: title,
+      content: content,
+      published_on: date,
+      visible: false
+    })
 end
 
 # A blog post with a future published on date
@@ -84,7 +129,7 @@ case Repo.get_by(Post, title: title) do
       "Last night Elixir changed my life. I finally learned how to spell \"parallelism\" correctly."
 
     date = Date.add(Date.utc_today(), 11)
-    Posts.create_post(%{title: title, content: content, published_on: date})
+    Posts.create_post(%{user_id: user1.id, title: title, content: content, published_on: date})
 end
 
 # A blog post with both content and associated comment having a large amount of text
@@ -99,7 +144,13 @@ title = "Typing head-first into the Gleamiverse"
 
     nil ->
       date = Date.utc_today()
-      Posts.create_post(%{title: title, content: Faker.Lorem.paragraph(100), published_on: date})
+
+      Posts.create_post(%{
+        user_id: user1.id,
+        title: title,
+        content: Faker.Lorem.paragraph(100),
+        published_on: date
+      })
   end
 
 case Repo.get_by(Comment, post_id: post.id) do
@@ -108,6 +159,10 @@ case Repo.get_by(Comment, post_id: post.id) do
 
   nil ->
     %Comment{}
-    |> Comment.changeset(%{content: Faker.Lorem.paragraph(50), post_id: post.id})
+    |> Comment.changeset(%{
+      user_id: user2.id,
+      content: Faker.Lorem.paragraph(50),
+      post_id: post.id
+    })
     |> Repo.insert!()
 end

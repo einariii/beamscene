@@ -2,6 +2,10 @@ defmodule Blog.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @moduledoc """
+  This module contains functions for user-related actions.
+  """
+
   schema "users" do
     field(:email, :string)
     field(:password, :string, virtual: true, redact: true)
