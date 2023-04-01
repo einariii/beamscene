@@ -35,8 +35,9 @@ end)
 ## Create 2 default users
 {:ok, user1} =
   case Repo.get_by(User, email: "test@test.com") do
-    %Post{} = post ->
-      IO.inspect(post.title, label: "User Already Created")
+    %User{} = user ->
+      IO.inspect(user.email, label: "User Already Created")
+      {:ok, user}
 
     nil ->
       user_attrs = %{email: "test@test.com", password: "password123!"}
@@ -45,8 +46,9 @@ end)
 
 {:ok, user2} =
   case Repo.get_by(User, email: "email@email.com") do
-    %Post{} = post ->
-      IO.inspect(post.title, label: "User Already Created")
+    %User{} = user ->
+      IO.inspect(user.email, label: "User Already Created")
+      {:ok, user}
 
     nil ->
       user_attrs = %{email: "email@email.com", password: "password123!"}
