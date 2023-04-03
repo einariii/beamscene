@@ -10,7 +10,6 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-alias Blog.Posts
 alias Blog.Repo
 alias Blog.Posts.Post
 alias Blog.Accounts
@@ -24,6 +23,7 @@ user_attrs = %{email: "test@test.com", password: "password123!"}
 
 Repo.insert(%Post{
   user_id: user.id,
+  published_on: Date.utc_today(),
   title: "My First Blog Post",
   content: "Welcome to my new blog! I'm excited to share my thoughts and ideas with you."
 })
@@ -54,7 +54,7 @@ Repo.insert(%Post{
 ["erlang", "elixir", "gleam", "luerl"]
 |> Enum.each(fn tag_name ->
   case Repo.get_by(Tag, name: tag_name) do
-    %Tag{} = tag ->
+    %Tag{} = _tag ->
       IO.inspect(tag_name, label: "Tag Already Created")
 
     nil ->

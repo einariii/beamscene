@@ -16,7 +16,7 @@ defmodule BlogWeb.PostsControllerTest do
   describe "index" do
     test "lists all posts", %{conn: conn} do
       user = user_fixture()
-      post = post_fixture(user_id: user.id)
+      post = post_fixture(user_id: user.id, published_on: Date.utc_today())
       conn = get(conn, Routes.posts_path(conn, :index))
       assert html_response(conn, 200) =~ post.title
       assert html_response(conn, 200) =~ "Search Posts"
@@ -24,7 +24,14 @@ defmodule BlogWeb.PostsControllerTest do
 
     test "lists all posts _ matching search query", %{conn: conn} do
       user = user_fixture()
-      post = post_fixture(user_id: user.id, title: "Yo! The crazy blog")
+
+      post =
+        post_fixture(
+          user_id: user.id,
+          title: "Yo! The crazy blog",
+          published_on: Date.utc_today()
+        )
+
       conn = get(conn, Routes.posts_path(conn, :index, title: post.title))
       assert html_response(conn, 200) =~ post.title
     end
