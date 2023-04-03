@@ -58,6 +58,7 @@ defmodule BlogWeb.PostsControllerTest do
     test "lists all posts _ matching search query", %{conn: conn} do
       user = user_fixture()
       conn = log_in_user(conn, user)
+
       post =
         post_fixture(
           user_id: user.id,
