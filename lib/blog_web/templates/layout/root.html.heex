@@ -20,7 +20,11 @@
         <p class="text-2xl px-8 pb-4 font-kosugi"> Life in the Elixir & Erlang ecosystem. </p>
       </section>
 
-      <div class="absolute text-center text-jet font-jura">
+      <div class="fixed py-10">
+      <img src={Routes.static_path(@conn, "/images/beamscene-beam.svg")} alt="Beam Scene logo" width="900" height="600">
+      </div>
+
+      <div class="absolute py-20 text-center text-jet font-jura">
         <marquee width="60%" direction="up" height="1000px">
         1. The system must be able to handle very large numbers of concurrent activities.<br><br>
         2. Actions must be performed at a certain point in time or within a certain time.<br><br>
