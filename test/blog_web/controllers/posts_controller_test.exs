@@ -22,9 +22,42 @@ defmodule BlogWeb.PostsControllerTest do
       assert html_response(conn, 200) =~ "Search Posts"
     end
 
+    test "posts with a future published on date are not listed", %{conn: conn} do
+      user = user_fixture()
+      conn = log_in_user(conn, user)
+
+      post =
+        post_fixture(
+          user_id: user.id,
+          title: "zbrBrfmrrxrrr! future me",
+          published_on: Faker.Date.forward(90)
+        )
+
+      conn = get(conn, Routes.posts_path(conn, :index))
+      assert html_response(conn, 200) =~ "Search Posts"
+      refute html_response(conn, 200) =~ post.title
+    end
+
+    test "posts with visibility set to false are not listed", %{conn: conn} do
+      user = user_fixture()
+      conn = log_in_user(conn, user)
+
+      post =
+        post_fixture(
+          user_id: user.id,
+          title: "zbrBrfmrrxrrr! invisible me",
+          visible: false,
+          published_on: Date.utc_today()
+        )
+
+      conn = get(conn, Routes.posts_path(conn, :index))
+      assert html_response(conn, 200) =~ "Search Posts"
+      refute html_response(conn, 200) =~ post.title
+    end
+
     test "lists all posts _ matching search query", %{conn: conn} do
       user = user_fixture()
-
+      conn = log_in_user(conn, user)
       post =
         post_fixture(
           user_id: user.id,

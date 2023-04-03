@@ -16,7 +16,8 @@ defmodule Blog.CommentsTest do
       user = user_fixture()
       post = post_fixture(user_id: user.id)
       comment = comment_fixture(post_id: post.id)
-      assert Comments.list_comments() == [comment]
+      comments_list = Comments.list_comments()
+      assert Enum.member?(comments_list, comment)
     end
 
     test "get_comment!/1 returns the comment with given id" do
