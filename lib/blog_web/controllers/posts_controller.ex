@@ -38,8 +38,6 @@ defmodule BlogWeb.PostsController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  # TODO consider adding user_id to post_params here instead of in the form
-
   def create(conn, %{"post" => post_params}) do
     # IO.inspect(post_params, label: "Good params")
     user_id = conn.assigns[:current_user].id

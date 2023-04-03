@@ -20,7 +20,7 @@
   </thead>
   <tbody>
 <%= for post <- @posts do %>
-    <%= if post.visible and post.published_on <= Date.utc_today() do %>
+    <%= if post.visible and Date.diff(post.published_on, Date.utc_today) <= 0 do %>
     <tr>
       <td><%= post.title %></td>
       <td><%= post.content %></td>

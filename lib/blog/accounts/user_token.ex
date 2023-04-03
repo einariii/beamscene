@@ -3,6 +3,10 @@ defmodule Blog.Accounts.UserToken do
   import Ecto.Query
   alias Blog.Accounts.UserToken
 
+  @moduledoc """
+  This module contains functions for user-related actions.
+  """
+
   @hash_algorithm :sha256
   @rand_size 32
 

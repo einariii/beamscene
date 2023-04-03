@@ -9,7 +9,7 @@ defmodule BlogWeb.Router do
     plug :fetch_live_flash
     plug :put_root_layout, {BlogWeb.LayoutView, :root}
     plug :protect_from_forgery
-    plug :put_secure_browser_headers
+    plug :put_secure_browser_headers, %{"content-security-policy" => "default-src 'self'"}
     plug :fetch_current_user
   end
 
@@ -48,17 +48,16 @@ defmodule BlogWeb.Router do
     get "/tags", TagController, :index
   end
 
-
   scope "/", BlogWeb do
     pipe_through [:browser, :require_authenticated_user]
 
-    resources "/tags", TagController
+    resources "/tags", TagController, except: [:index]
   end
-  
+
   # Other scopes may use custom stacks.
   # scope "/api", BlogWeb do
-    #   pipe_through :api
-    # end
+  #   pipe_through :api
+  # end
 
   # Enables LiveDashboard only for development
   #
@@ -103,7 +102,6 @@ defmodule BlogWeb.Router do
     get "/users/reset_password/:token", UserResetPasswordController, :edit
     put "/users/reset_password/:token", UserResetPasswordController, :update
   end
-
 
   scope "/", BlogWeb do
     pipe_through [:browser, :require_authenticated_user]

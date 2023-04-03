@@ -82,9 +82,8 @@ defmodule BlogWeb.CommentController do
   def delete(conn, %{"id" => id} = params) do
     # IO.inspect(params, label: "Params")
 
-    comment =
-      Comments.get_comment!(id)
-      # |> IO.inspect(label: "The COmment")
+    comment = Comments.get_comment!(id)
+    # |> IO.inspect(label: "The COmment")
 
     {:ok, _comment} = Comments.delete_comment(comment)
 
