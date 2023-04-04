@@ -35,6 +35,12 @@
   display: none;
 }
 
+article {
+  float: left;
+  padding: 100px;
+  width: 100%;
+}
+
 .ball {
   position: relative;
   display: flex;
@@ -61,6 +67,12 @@
   background: radial-gradient(circle at 65% 35%, rgba(0, 0, 0, 0), #0000cd), url(https://grainy-gradients.vercel.app/noise.svg);     
   filter: contrast(120%) brightness(900%);
 }
+
+object-center {
+  top: 500;
+  left: 2000;
+}
+
 
 div.absolute {
   position: right;

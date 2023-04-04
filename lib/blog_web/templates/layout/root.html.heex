@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <div class="flex scale-[.8]">
+
+  <div class="flex scale-[.85]">
     <head>
       <meta charset="utf-8"/>
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -8,13 +9,11 @@
       <meta name="csrf-token" content={csrf_token_value()}>
       <%= live_title_tag assigns[:page_title] || "Blog", suffix: " · Phoenix Framework" %>
       <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
-      <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/vendor/fonts/Jura/jura.css")}/>
-      <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/vendor/fonts/Kosugi/kosugi.css")}/>
       <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/js/app.js")}></script>
     </head>
 
-    <body class="bg-left-top pt-12 font-extrabold text-jet bg-crayolapink">
-      <section class="">
+    <body class="bg-left-top pt-12 font-extrabold text-jet bg-gradient-to-r from-crayolapink to-lavender">
+      <section>
         <p class="text-7xl pt-8 pb-2 font-jura tracking-widest"> B E A M  S C E N E </p>
         <hr width="200%" color="gray-500" size="50px" align="center" />
         <p class="text-2xl px-8 pb-4 font-kosugi"> Life in the Elixir & Erlang ecosystem. </p>
@@ -24,6 +23,12 @@
       <img src={Routes.static_path(@conn, "/images/beamscene-beam.svg")} alt="Beam Scene logo" width="900" height="600">
       </div>
 
+      <.form let={f} for={@conn} method={"get"} action={Routes.posts_path(@conn, :index)}>
+        <%= text_input f, :title %>
+        <%= error_tag f, :title %>
+        <%= submit "Search" %>
+      </.form>
+      
       <div class="absolute py-20 text-center text-jet font-jura">
         <marquee width="60%" direction="up" height="1000px">
         1. The system must be able to handle very large numbers of concurrent activities.<br><br>
@@ -43,7 +48,7 @@
       </div>
 
       <section class="absolute py-56 grid grid-col-3 text-jet">
-          <article class="font-kosugi text-xl bg-gradient-to-br from-white to-violet-500 col-span-2">
+          <article class="font-kosugi text-xl col-span-2">
             <ul>
               <li class="py-2 hover:text-tiffanyblue">
                 <a href="/about">ABOUT</a>

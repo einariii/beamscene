@@ -1,5 +1,3 @@
-<h1>Search Posts</h1>
-
 <.form let={f} for={@conn} method={"get"} action={Routes.posts_path(@conn, :index)}>
   <%= text_input f, :title %>
   <%= error_tag f, :title %>
@@ -19,6 +17,7 @@
     </tr>
   </thead>
   <tbody>
+  
 <%= for post <- @posts do %>
     <%= if post.visible and Date.diff(post.published_on, Date.utc_today) <= 0 do %>
     <tr>
