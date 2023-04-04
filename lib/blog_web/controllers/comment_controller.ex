@@ -35,18 +35,22 @@ defmodule BlogWeb.CommentController do
   end
 
   def create(conn, %{"comment" => comment_params}) do
-    # line 25: how to write redirect(to: Routes.posts_path(conn, :show, post))???
     user_id = conn.assigns[:current_user].id
     comment_params = Map.put(comment_params, "user_id", user_id)
 
+    post = Blog.Posts.get_post!(comment_params["post_id"])
+    # |> Blog.Repo.preload([:user, comments: [:user]])
+
     case Comments.create_comment(comment_params) do
-      {:ok, comment} ->
+      {:ok, _comment} ->
         conn
         |> put_flash(:info, "Comment created successfully.")
-        |> redirect(to: Routes.posts_path(conn, :show, comment.post_id))
+        |> redirect(to: Routes.posts_path(conn, :show, post))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        post = Blog.Posts.get_post!(comment_params["post_id"])
+        post =
+          Blog.Posts.get_post!(comment_params["post_id"])
+          |> Blog.Repo.preload([:user, comments: [:user]])
 
         conn
         |> put_view(BlogWeb.PostsView)
@@ -55,7 +59,7 @@ defmodule BlogWeb.CommentController do
   end
 
   def show(conn, %{"id" => id}) do
-    comment = Comments.get_comment!(id)
+    comment = Comments.get_comment!(id) |> Blog.Repo.preload([:user])
     render(conn, "show.html", comment: comment)
   end
 
@@ -66,7 +70,9 @@ defmodule BlogWeb.CommentController do
   end
 
   def update(conn, %{"id" => id, "comment" => comment_params}) do
-    comment = Comments.get_comment!(id)
+    comment =
+      Comments.get_comment!(id)
+      |> Blog.Repo.preload([:user])
 
     case Comments.update_comment(comment, comment_params) do
       {:ok, comment} ->
