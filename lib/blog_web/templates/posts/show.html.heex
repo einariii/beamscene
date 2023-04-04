@@ -1,6 +1,4 @@
 <section>
-  <h1>Show Post</h1>
-
   <ul>
 
     <li>
@@ -18,11 +16,6 @@
       <%= @post.published_on %>
     </li>
 
-    <li>
-      <strong>Visible:</strong>
-      <%= @post.visible %>
-    </li>
-
   </ul>
 
   <span><%= link "Edit", to: Routes.posts_path(@conn, :edit, @post) %></span> |
@@ -30,7 +23,6 @@
   <span><%= link "Back", to: Routes.posts_path(@conn, :index) %></span>
 </section>
 <section>
-  <h1> List tags</h1>
   <%= for tag <- @post.tags do %>
     <article>
       <p><%= tag.name %></p>
@@ -40,7 +32,6 @@
 </section>
 
 <section>
-  <h1>List Comments</h1>
   <%= for comment <- @post.comments do %>
     <article>
       <p><%= comment.content %></p>
@@ -59,7 +50,6 @@
       </div>
     <% end %> --%>
 
-    <%= label f, :content %>
     <%= textarea f, :content %>
     <%= error_tag f, :content %>
 
