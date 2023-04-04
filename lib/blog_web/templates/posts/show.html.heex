@@ -7,14 +7,28 @@
     </li>
 
     <li>
+      <strong>Published:</strong>
+      <%= @post.published_on %>
+    </li>
+
+    <%= if @post.inserted_at == @post.updated_at do %>
+    <% else %>
+      <li>
+        <strong>Updated:</strong>
+        <%= NaiveDateTime.to_string(@post.updated_at) %>
+      </li>
+    <% end %>
+
+    <li>
+      <strong>Author:</strong>
+      <%= @post.user.username %>
+    </li>
+
+    <li>
       <strong>Content:</strong>
       <%= @post.content %>
     </li>
 
-    <li>
-      <strong>Published On:</strong>
-      <%= @post.published_on %>
-    </li>
 
   </ul>
 
@@ -34,6 +48,19 @@
 <section>
   <%= for comment <- @post.comments do %>
     <article>
+      <header>
+        <strong>Comment By:</strong>
+        <%= comment.user.username %>
+        <%= if comment.inserted_at == comment.updated_at do %>
+              <strong>On:</strong>
+              <%= NaiveDateTime.to_string(comment.inserted_at) %>
+        <% else %>
+              <strong>On:</strong>
+              <%= NaiveDateTime.to_string(comment.inserted_at) %>
+              <strong>Updated:</strong>
+              <%= NaiveDateTime.to_string(comment.updated_at) %>
+        <% end %>
+      </header>
       <p><%= comment.content %></p>
     </article>
   <span><%= link "Edit", to: Routes.comment_path(@conn, :edit, comment) %></span> |
