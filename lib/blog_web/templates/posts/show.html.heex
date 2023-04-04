@@ -1,7 +1,10 @@
 <section class="article">
   <article>
-    <h1> <%= String.upcase(@post.title) %> </h1> <br>
-    <p> <%= @post.published_on %> </p>
+    <h1 class="font-jura text-3xl"> <%= String.upcase(@post.title) %> </h1>
+  </article>
+
+  <article>
+    <p> <%= @post.published_on %> </p> <br>
     <p> <%= @post.content %> </p> <br>
   </article>
 
