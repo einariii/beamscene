@@ -12,7 +12,7 @@ defmodule Blog.Posts.Post do
     field(:visible, :boolean, default: true)
     has_many(:comments, Blog.Comments.Comment, on_delete: :delete_all)
     many_to_many(:tags, Blog.Tags.Tag, join_through: "post_tags", on_replace: :delete)
-    belongs_to(:user, Blog.Users.User)
+    belongs_to(:user, Blog.Accounts.User)
 
     timestamps()
   end

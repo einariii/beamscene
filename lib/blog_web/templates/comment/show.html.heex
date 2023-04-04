@@ -1,6 +1,23 @@
 <ul>
 
   <li>
+    <strong>By:</strong>
+    <%= @comment.user.username %>
+  </li>
+
+  <li>
+    <%= if @comment.inserted_at == @comment.updated_at do %>
+          <strong>On:</strong>
+          <%= NaiveDateTime.to_string(@comment.inserted_at) %>
+    <% else %>
+          <strong>On:</strong>
+          <%= NaiveDateTime.to_string(@comment.inserted_at) %>
+          <strong>Updated:</strong>
+          <%= NaiveDateTime.to_string(@comment.updated_at) %>
+    <% end %>
+  </li>
+
+  <li>
     <strong>Content:</strong>
     <%= @comment.content %>
   </li>

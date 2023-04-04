@@ -12,7 +12,7 @@ alias Blog.Posts
       {:ok, user}
 
     nil ->
-      user_attrs = %{email: "test@test.com", password: "password123!"}
+      user_attrs = %{email: "test@test.com", username: "beamtester", password: "password123!"}
       Accounts.register_user(user_attrs)
   end
 
@@ -23,7 +23,7 @@ alias Blog.Posts
       {:ok, user}
 
     nil ->
-      user_attrs = %{email: "email@email.com", password: "password123!"}
+      user_attrs = %{email: "email@email.com", username: "beammailer", password: "password123!"}
       Accounts.register_user(user_attrs)
   end
 
@@ -34,7 +34,7 @@ alias Blog.Posts
         {:ok, user}
 
       nil ->
-        user_attrs = %{email: "account@account.com", password: "password123!"}
+        user_attrs = %{email: "account@account.com", username: "beamaccounter", password: "password123!"}
         Accounts.register_user(user_attrs)
     end
 

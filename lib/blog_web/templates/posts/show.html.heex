@@ -3,10 +3,36 @@
     <h1 class="font-jura text-3xl"> <%= String.upcase(@post.title) %> </h1>
   </article>
 
-  <article>
-    <p> <%= @post.published_on %> </p> <br>
-    <p> <%= @post.content %> </p> <br>
-  </article>
+    <li>
+      <strong>Title:</strong>
+      <%= @post.title %>
+    </li>
+
+    <li>
+      <strong>Published:</strong>
+      <%= @post.published_on %>
+    </li>
+
+    <%= if @post.inserted_at == @post.updated_at do %>
+    <% else %>
+      <li>
+        <strong>Updated:</strong>
+        <%= NaiveDateTime.to_string(@post.updated_at) %>
+      </li>
+    <% end %>
+
+    <li>
+      <strong>Author:</strong>
+      <%= @post.user.username %>
+    </li>
+
+    <li>
+      <strong>Content:</strong>
+      <%= @post.content %>
+    </li>
+
+
+  </ul>
 
   <span><%= link "Edit", to: Routes.posts_path(@conn, :edit, @post) %></span> |
   <span><%= link "Delete", to: Routes.posts_path(@conn, :delete, @post.id), method: :delete, data: [confirm: "Are you sure?"] %></span> |
@@ -25,6 +51,19 @@
 <section class="article">
   <%= for comment <- @post.comments do %>
     <article>
+      <header>
+        <strong>Comment By:</strong>
+        <%= comment.user.username %>
+        <%= if comment.inserted_at == comment.updated_at do %>
+              <strong>On:</strong>
+              <%= NaiveDateTime.to_string(comment.inserted_at) %>
+        <% else %>
+              <strong>On:</strong>
+              <%= NaiveDateTime.to_string(comment.inserted_at) %>
+              <strong>Updated:</strong>
+              <%= NaiveDateTime.to_string(comment.updated_at) %>
+        <% end %>
+      </header>
       <p><%= comment.content %></p>
     </article>
   <span><%= link "Edit", to: Routes.comment_path(@conn, :edit, comment) %></span> |
