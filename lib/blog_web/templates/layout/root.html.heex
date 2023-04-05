@@ -12,14 +12,14 @@
       <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/js/app.js")}></script>
     </head>
 
-    <body class="font-medium text-jet bg-gradient-to-r from-crayolapink to-tiffanyblue mix-blend-plus-lighter">
-      <div class="max-h-screen flex">
+    <body class="font-medium text-jet bg-gradient-to-r from-crayolapink to-tiffanyblue mix-blend-color-overlay">
+      <div class="max-h-screen flex dark:bg-gray-800">
         <div class="flex-auto mx-auto p-10">
         <section class="grid grid-cols-12 grid-rows-3 gap-8 grid-flow-row">
 
           <div class="col-span-6">
             <section>
-              <p class="text-7xl pt-8 pb-2 font-jura tracking-widest"> B E A M  S C E N E </p>
+              <p class="text-7xl pt-8 pb-2 font-jura tracking-widest"> B E A M  s c e n e </p>
               <hr width="140%" color="licorice" size="50px" align="left" />
               <p class="text-2xl px-8 pb-4 font-kosugi"> Life in the Elixir & Erlang ecosystem. </p>
             </section>
@@ -33,7 +33,7 @@
             </.form>
           </div>
 
-          <div class="col-span-2 col-start-10">
+          <div class="col-span-1 col-start-10">
             <div class="py-10">
               <img src={Routes.static_path(@conn, "/images/beamscene-beam.svg")} alt="Beam Scene logo" width="600" height="300">
             </div>

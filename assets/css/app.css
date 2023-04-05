@@ -42,13 +42,13 @@
 }
 
 .ball {
-  position: fixed;
+  position: absolute;
   display: flow-root;
   align-items: center;
   justify-content: flex-end;
   height: 125px;
   width: 125px;
-  border-radius: 25px;
+  border-radius: 30px;
   overflow: hidden;
   z-index: 40;
 }
