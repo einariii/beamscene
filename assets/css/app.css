@@ -42,13 +42,13 @@
 }
 
 .ball {
-  position: absolute;
-  display: flex;
+  position: fixed;
+  display: flow-root;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   height: 125px;
   width: 125px;
-  border-radius: 125px;
+  border-radius: 25px;
   overflow: hidden;
   z-index: 40;
 }
@@ -68,7 +68,7 @@
   filter: contrast(120%) brightness(900%);
 }
 
-object-center {
+.object-center {
   top: 500;
   left: 2000;
 }
@@ -97,10 +97,10 @@ div.fixed {
 
 .isolate {
   isolation: isolate;
-  position: absolute;
+  position: sticky;
   top: 0;
-  height: 100%;
-  width: 100%;
+  height: 10%;
+  width: 10%;
 }
 
 .noise {

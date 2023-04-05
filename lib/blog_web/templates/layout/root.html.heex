@@ -12,7 +12,7 @@
       <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/js/app.js")}></script>
     </head>
 
-    <body class="bg-left-top font-extrabold text-jet bg-gradient-to-r from-crayolapink to-lavender">
+    <body class="font-medium text-jet bg-gradient-to-r from-crayolapink to-tiffanyblue mix-blend-plus-lighter">
       <div class="max-h-screen flex">
         <div class="flex-auto mx-auto p-10">
         <section class="grid grid-cols-12 grid-rows-3 gap-8 grid-flow-row">
@@ -25,7 +25,7 @@
             </section>
           </div>
 
-          <div class="col-span-1 pt-10 pr-10">
+          <div class="col-span-1 pt-10 mx-20">
             <.form let={f} for={@conn} method={"get"} action={Routes.posts_path(@conn, :index)}>
               <%= text_input f, :title %>
               <%= error_tag f, :title %>
@@ -33,7 +33,7 @@
             </.form>
           </div>
 
-          <div class="col-span-1 col-start-10">
+          <div class="col-span-2 col-start-10">
             <div class="py-10">
               <img src={Routes.static_path(@conn, "/images/beamscene-beam.svg")} alt="Beam Scene logo" width="600" height="300">
             </div>
