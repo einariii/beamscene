@@ -3,6 +3,7 @@
     <h1 class="font-jura text-3xl"> <%= String.upcase(@post.title) %> </h1>
   </article>
 
+  <ul>
     <li>
       <strong>Title:</strong>
       <%= @post.title %>
@@ -30,8 +31,6 @@
       <strong>Content:</strong>
       <%= @post.content %>
     </li>
-
-
   </ul>
 
   <span><%= link "Edit", to: Routes.posts_path(@conn, :edit, @post) %></span> |
