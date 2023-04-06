@@ -1,4 +1,5 @@
-<h1>Reset password</h1>
+<section class="flex-auto article text-jet text-xl font-kosugi tracking-wide">
+    <div class="min-h-screen items-center mx-auto">
 
 <.form let={f} for={@changeset} action={Routes.user_reset_password_path(@conn, :update, @token)}>
   <%= if @changeset.action do %>
@@ -10,12 +11,13 @@
   <%= label f, :password, "New password" %>
   <%= password_input f, :password, required: true %>
   <%= error_tag f, :password %>
-
+  <br>
   <%= label f, :password_confirmation, "Confirm new password" %>
   <%= password_input f, :password_confirmation, required: true %>
   <%= error_tag f, :password_confirmation %>
 
   <div>
+    <br>
     <%= submit "Reset password" %>
   </div>
 </.form>
@@ -24,3 +26,6 @@
   <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
   <%= link "Log in", to: Routes.user_session_path(@conn, :new) %>
 </p>
+
+</div>
+</section>

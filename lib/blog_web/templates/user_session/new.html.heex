@@ -7,17 +7,19 @@
       <p><%= @error_message %></p>
     </div>
   <% end %>
-
   <%= label f, :email %>
+  <br>
   <%= email_input f, :email, required: true %>
-
+  <br>
   <%= label f, :password %>
+  <br>
   <%= password_input f, :password, required: true %>
   <br>
   <%= label f, :remember_me, "Keep me logged in for 99.999999999& uptime" %>
   <%= checkbox f, :remember_me %>
 
   <div>
+  <br>
     <%= submit "Log in" %>
   </div>
 </.form>
