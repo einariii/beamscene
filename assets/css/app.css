@@ -1,6 +1,8 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import url("https://fonts.googleapis.com/css2?family=Jura&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kosugi&display=swap");
 
 /* This file is for your main application CSS */
 
@@ -32,10 +34,87 @@
 .alert:empty {
   display: none;
 }
+
+.article {
+  float: left;
+  padding: 100px;
+  width: 100%;
+}
+
+.ball {
+  position: absolute;
+  display: flow-root;
+  align-items: center;
+  justify-content: flex-end;
+  height: 125px;
+  width: 125px;
+  border-radius: 30px;
+  overflow: hidden;
+  z-index: 40;
+}
+
+.ball-light {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 67% 30%, #EF626C, #84DCCF);
+  mix-blend-mode: multiply;
+}
+
+.ball-shadow {
+  height: 100%;
+  background: radial-gradient(circle at 65% 35%, #22181C, #312F2F), url(https://grainy-gradients.vercel.app/noise.svg);     
+  filter: contrast(120%) brightness(900%);
+}
+
+.object-center {
+  top: 500;
+  left: 2000;
+}
+
+
+div.absolute {
+  position: right;
+  right: 0px;
+  top: 60px;
+  width: 150px;
+  height: 400px;
+} 
+
+div.fixed {
+  position: right;
+  right: 0px;
+  width: 200px;
+  height: 150px;
+}
+
 .invalid-feedback {
   color: #a94442;
   display: block;
   margin: -1rem 0 2rem;
+}
+
+.isolate {
+  isolation: isolate;
+  position: sticky;
+  top: 0;
+  height: 10%;
+  width: 10%;
+}
+
+.noise {
+  /* ... */
+  background:
+    linear-gradient(to right, pink, transparent),
+    url(https://grainy-gradients.vercel.app/noise.svg);
+    filter: contrast(170%) brightness(1000%); 
+}
+
+.overlay {
+  /* ... */
+  background: moccasin;
+  mix-blend-mode: multiply;
 }
 
 /* LiveView specific classes for your customization */
@@ -102,6 +181,12 @@
   animation: 0.2s ease-out 0s normal forwards 1 fade-out-keys;
 }
 
+.static { 
+  position: static;
+}
+
+
+
 @keyframes fade-in-scale-keys{
   0% { scale: 0.95; opacity: 0; }
   100% { scale: 1.0; opacity: 1; }
@@ -121,3 +206,13 @@
   0% { opacity: 1; }
   100% { opacity: 0; }
 }
+
+/* @font-face {
+  font-family: 'Jura';
+  src: url('../Jura-VariableFont_wght.ttf'), format('ttf');
+}
+
+@font-face {
+  font-family: 'Kosugi';
+  src:  url('../Kosugi-Regular.ttf') format('ttf'); 
+} */

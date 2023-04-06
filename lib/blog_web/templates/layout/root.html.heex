@@ -1,25 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="csrf-token" content={csrf_token_value()}>
-    <%= live_title_tag assigns[:page_title] || "Blog", suffix: " · Phoenix Framework" %>
-    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
-    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
-  </head>
-  <body>
-    <header>
-      <section class="container">
-        <nav>
-          <%= render "_user_menu.html", assigns %>
-        </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src={Routes.static_path(@conn, "/images/phoenix.png")} alt="Phoenix Framework Logo"/>
-        </a>
-      </section>
-    </header>
-    <%= @inner_content %>
-  </body>
+
+  <div class="flex-auto">
+    <head>
+      <meta charset="utf-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta name="csrf-token" content={csrf_token_value()}>
+      <%= live_title_tag assigns[:page_title] || "Blog", suffix: " · Phoenix Framework" %>
+      <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+      <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/js/app.js")}></script>
+    </head>
+
+    <body class="font-medium text-jet bg-gradient-to-r from-crayolapink to-tiffanyblue mix-blend-color-overlay">
+      <div class="max-h-screen flex dark:bg-gray-800">
+        <div class="flex-auto mx-auto p-10">
+        <section class="grid grid-cols-12 grid-rows-3 gap-8 grid-flow-row">
+
+          <div class="col-span-6">
+            <section>
+              <p class="text-7xl pt-8 pb-2 font-jura tracking-widest"> B E A M  s c e n e </p>
+              <hr width="140%" color="licorice" size="50px" align="left" />
+              <p class="text-2xl px-8 pb-4 font-kosugi"> Life in the Elixir & Erlang ecosystem. </p>
+            </section>
+          </div>
+
+          <div class="col-span-1 pt-10 mx-20">
+            <.form let={f} for={@conn} method={"get"} action={Routes.posts_path(@conn, :index)}>
+              <%= text_input f, :title %>
+              <%= error_tag f, :title %>
+              <%= submit "Search" %>
+            </.form>
+          </div>
+
+          <div class="col-span-1 col-start-10">
+            <div class="py-10">
+              <img src={Routes.static_path(@conn, "/images/beamscene-beam.svg")} alt="Beam Scene logo" width="600" height="300">
+            </div>
+          </div>
+
+          <div class="col-span-2 row-start-2">
+            <section class="text-jet -my-40">
+              <div class="font-kosugi text-xl col-span-2">
+                <ul>
+                  <li class="py-2 hover:text-tiffanyblue">
+                    <a href="/about">ABOUT</a>
+                  </li>
+                  <li class="py-2 hover:text-tiffanyblue">
+                    <a href="/posts">POSTS</a>
+                  </li>
+                  <li class="py-2 hover:text-tiffanyblue">
+                    <a href="/tags">TAGS</a>
+                  </li>
+                  <li class="py-2 hover:text-tiffanyblue">
+                    <a href="/codezone">CODEZONE</a>
+                  </li>
+                  <li class="py-2 hover:text-tiffanyblue">
+                    <a href="/webring">WEBRING</a>
+                  </li>
+                  <li class="py-2 hover:text-tiffanyblue">
+                    <a href="/guestbook">GUESTBOOK</a>
+                  </li>
+                  <li class="py-2 hover:text-tiffanyblue">
+                    <a href="/login">LOGIN</a>
+                  </li>
+                </ul>
+              </div>
+            </section>
+          <div class ="h-24"></div></div>
+
+          <div class="flex-auto col-span-6 row-span-4 -my-40">
+              <%= @inner_content %>
+          </div>
+
+          <div class="col-span-1">
+            <div class="absolute text-center text-jet font-jura">
+              <marquee width="60%" direction="up" height="1000px">
+              1. The system must be able to handle very large numbers of concurrent activities.<br><br>
+              2. Actions must be performed at a certain point in time or within a certain time.<br><br>
+              3. Systems may be distributed over several computers.<br><br>
+              4. The system is used to control hardware.<br><br>
+              5. The software systems are very large.<br><br>
+              6. The system exhibits complex functionality such as, feature interaction.<br><br>
+              7. The systems should be in continuous operation for many years.<br><br>
+              8. Software maintenance (reconfiguration, etc) should be performed without stopping the system.<br><br>
+              9. There are stringent quality, and reliability requirements.<br><br>
+              10. Fault tolerance both to hardware failures, and software errors, must be provided.<br><br>
+
+              Bjarne Däcker. Concurrent functional programming for telecommunications: A case study of technology introduction. November 2000.
+              Licentiate Thesis.<br><br>
+              </marquee>
+            </div>
+          </div>
+
+        </section>
+      </div>
+    </div>
+
+    </body>
+  </div>
 </html>

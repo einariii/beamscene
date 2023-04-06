@@ -2,6 +2,8 @@
 // https://tailwindcss.com/docs/configuration
 
 let plugin = require('tailwindcss/plugin')
+// const defaultTheme = require('tailwindcss/defaultTheme')
+
 
 module.exports = {
   content: [
@@ -9,8 +11,26 @@ module.exports = {
     '../lib/*_web.ex',
     '../lib/*_web/**/*.*ex'
   ],
+  darkMode: 'media',
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'sans': ['Jura'],
+        'serif': ['Kosugi'],
+        'jura': ['Jura'],
+        'kosugi': ['Kosugi']
+      }
+    },
+    colors: {
+      'lightsalmon': '#ffa07a',
+      'crimson': '#dc143c',
+      'mediumblue': '#0000cd',
+      'lavender': '#F6E8EA',
+      'crayolapink': '#EF626C',
+      'licorice': '#22181C',
+      'jet': '#312F2F',
+      'tiffanyblue': '#84DCCF',
+    }
   },
   plugins: [
     require('@tailwindcss/forms'),
