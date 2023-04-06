@@ -1,28 +1,20 @@
-<.form let={f} for={@conn} method={"get"} action={Routes.posts_path(@conn, :index)}>
-  <%= text_input f, :title %>
-  <%= error_tag f, :title %>
-  <%= submit "Search" %>
-</.form>
-
-
+<section class="flex-auto article">
 <table>
   <thead>
-    <tr>
+    <tr class="font-jura text-3xl">>
       <th>Title</th>
-      <th>Content</th>
-      <th>Published On</th>
-      <th>Visible</th>
+      <th>Author</th>
+      <th>Published on</th>
 
       <th></th>
     </tr>
   </thead>
   <tbody>
-  
+
 <%= for post <- @posts do %>
     <%= if post.visible and Date.diff(post.published_on, Date.utc_today) <= 0 do %>
     <tr>
       <td><%= post.title %></td>
-      <td><%= post.content %></td>
       <td><%= post.published_on %></td>
 
       <td>
@@ -35,5 +27,6 @@
 <% end %>
   </tbody>
 </table>
+</section>
 
 <span><%= link "New Post", to: Routes.posts_path(@conn, :new) %></span>
