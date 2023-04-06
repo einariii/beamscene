@@ -5,6 +5,7 @@ defmodule BlogWeb.PostsController do
   alias Blog.Comments.Comment
   alias Blog.Posts
   alias Blog.Posts.Post
+  alias Blog.Repo
   alias Blog.Tags
 
   plug :require_user_owns_post when action in [:edit, :update, :delete]
@@ -24,12 +25,12 @@ defmodule BlogWeb.PostsController do
   end
 
   def index(conn, %{"title" => title}) do
-    posts = Posts.list_posts(title)
+    posts = Posts.list_posts(title) |> Repo.preload([:user])
     render(conn, "index.html", posts: posts)
   end
 
   def index(conn, _params) do
-    posts = Posts.list_posts()
+    posts = Posts.list_posts() |> Repo.preload([:user])
     render(conn, "index.html", posts: posts)
   end
 

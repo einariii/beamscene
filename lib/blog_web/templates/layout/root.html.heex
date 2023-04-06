@@ -13,9 +13,9 @@
     </head>
 
     <body class="font-medium text-jet bg-gradient-to-r from-crayolapink to-tiffanyblue mix-blend-color-overlay">
-      <div class="max-h-screen flex dark:bg-gray-800">
+      <div class="max-h-screen flex">
         <div class="flex-auto mx-auto p-10">
-        <section class="grid grid-cols-12 grid-rows-3 gap-8 grid-flow-row">
+        <section class="grid grid-cols-12 grid-rows-3 grid-flow-row">
 
           <div class="col-span-6">
             <section>
@@ -33,8 +33,8 @@
             </.form>
           </div>
 
-          <div class="col-span-1 col-start-10">
-            <div class="py-10">
+          <div class="col-span-2 col-start-10">
+            <div class="">
               <img src={Routes.static_path(@conn, "/images/beamscene-beam.svg")} alt="Beam Scene logo" width="600" height="300">
             </div>
           </div>
@@ -59,23 +59,20 @@
                     <a href="/webring">WEBRING</a>
                   </li>
                   <li class="py-2 hover:text-tiffanyblue">
-                    <a href="/guestbook">GUESTBOOK</a>
-                  </li>
-                  <li class="py-2 hover:text-tiffanyblue">
-                    <a href="/login">LOGIN</a>
+                    <a href="/users/log_in">LOGIN</a>
                   </li>
                 </ul>
               </div>
             </section>
           <div class ="h-24"></div></div>
 
-          <div class="flex-auto col-span-6 row-span-4 -my-40">
+          <div class="col-span-6 row-span-4 -my-40">
               <%= @inner_content %>
           </div>
 
           <div class="col-span-1">
             <div class="absolute text-center text-jet font-jura">
-              <marquee width="60%" direction="up" height="1000px">
+              <marquee width="70%" direction="up" height="1000px">
               1. The system must be able to handle very large numbers of concurrent activities.<br><br>
               2. Actions must be performed at a certain point in time or within a certain time.<br><br>
               3. Systems may be distributed over several computers.<br><br>
@@ -99,4 +96,7 @@
 
     </body>
   </div>
+
+<footer class="align-center left-2">An MVKLGMEEE production.</footer>
+
 </html>

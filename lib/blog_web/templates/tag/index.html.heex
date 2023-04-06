@@ -1,11 +1,9 @@
-<h1>Listing Tags</h1>
+<section class="text-jet text-xl font-kosugi flex-auto article">
+    <div class="min-h-screen items-center mx-auto grid grid-rows-3 grid-flow-col">
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -14,13 +12,11 @@
       <td><%= tag.name %></td>
 
       <td>
-        <span><%= link "Show", to: Routes.tag_path(@conn, :show, tag) %></span>
-        <span><%= link "Edit", to: Routes.tag_path(@conn, :edit, tag) %></span>
-        <span><%= link "Delete", to: Routes.tag_path(@conn, :delete, tag), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        <span><%= link "Show posts", to: Routes.tag_path(@conn, :show, tag) %></span>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
-
-<span><%= link "New Tag", to: Routes.tag_path(@conn, :new) %></span>
+</div>
+</section>
