@@ -1,6 +1,6 @@
 .history
 .vscode
-
+*.sublime-*
 .env
 
 # Dialyzer plt files
