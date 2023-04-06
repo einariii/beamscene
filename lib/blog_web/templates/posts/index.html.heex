@@ -1,32 +1,27 @@
-<section class="flex-auto article">
-<table>
-  <thead>
-    <tr class="font-jura text-3xl">>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Published on</th>
+<section class="text-jet text-xl font-kosugi flex-auto article">
+    <div class="min-h-screen items-center mx-auto grid grid-rows-3 grid-flow-col">
+      <table>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
+      <tbody>
 
-<%= for post <- @posts do %>
-    <%= if post.visible and Date.diff(post.published_on, Date.utc_today) <= 0 do %>
-    <tr>
-      <td><%= post.title %></td>
-      <td><%= post.published_on %></td>
+        <%= for post <- @posts do %>
+            <%= if post.visible and Date.diff(post.published_on, Date.utc_today) <= 0 do %>
+            <tr>
+              <td><%= post.title %></td>
+              <td><%= post.user.username %></td>
+              <td><%= post.published_on %></td>
 
-      <td>
-        <span><%= link "Show", to: Routes.posts_path(@conn, :show, post) %></span>
-        <span><%= link "Edit", to: Routes.posts_path(@conn, :edit, post) %></span>
-        <span><%= link "Delete", to: Routes.posts_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"] %></span>
-      </td>
-    </tr>
-    <% end %>
-<% end %>
-  </tbody>
-</table>
+              <td>
+                <span><%= link "Show", to: Routes.posts_path(@conn, :show, post) %></span>
+                <span><%= link "Edit", to: Routes.posts_path(@conn, :edit, post) %></span>
+                <span><%= link "Delete", to: Routes.posts_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"] %></span>
+              </td>
+            </tr>
+            <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <br><br>
+    <span><%= link "New Post", to: Routes.posts_path(@conn, :new) %></span>
+  </div>
 </section>
-
-<span><%= link "New Post", to: Routes.posts_path(@conn, :new) %></span>
