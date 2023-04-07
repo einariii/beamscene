@@ -1,1 +1,24 @@
-<p>What are we about</p>
+<section class="flex-auto article">
+  <article>
+    <h1 class="font-jura text-4xl">About BEAMscene</h1>
+  </article>
+
+  <br>
+  <ul>
+    <li>
+        A collaborative blog built by members of the first <a href="https://github.com/DockYard-Academy">Dockyard Academy</a> cohort,
+        uncovering the under-appreciated people and stories hiding in the very vibrant <a href="https://github.com/llaisdy/beam_languages#34-languages-on-the-beam">BEAM ecosystem</a>.
+        Expect contributions from folks writing Elixir, Erlang, Gleam, Luerl, Clojerl, Alpaca...maybe even Fika! :bullettrain_front:
+        <br>
+        Written in <a href="https://elixir-lang.org">Elixir</a>, <a href="https://github.com/phoenixframework/phoenix_live_view">Phoenix Liveview</a>,
+        <a href="https://tailwindcss.com/">TailwindCSS</a>, and <a href="https://postgresql.org/">PostgresQL</a>. Deployed on the incredible <a href="https://fly.io">Fly.io</a>.
+        <br>
+        <br>
+        <h2>Contributors:</h2>
+        <a href="https://github.com/lgmfred">@lgmfred</a>, <a href="https://github.com/mvkvc">@mvkvc</a>, <a href="https://github.com/einariii">@einariii</a>
+
+    </li>
+  </ul>
+  <br>
+  <span><%= link "Back", to: Routes.posts_path(@conn, :index) %></span>
+</section>

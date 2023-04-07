@@ -7,9 +7,9 @@
         <%= for post <- @posts do %>
             <%= if post.visible and Date.diff(post.published_on, Date.utc_today) <= 0 do %>
             <tr>
+              <td><%= post.published_on %></td>
               <td><%= post.title %></td>
               <td><%= post.user.username %></td>
-              <td><%= post.published_on %></td>
 
               <td>
                 <span><%= link "Show", to: Routes.posts_path(@conn, :show, post) %></span>
