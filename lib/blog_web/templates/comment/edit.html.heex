@@ -1,5 +1,10 @@
-<h1>Edit Comment</h1>
-
+<section class="flex-auto article pt-40">
+  <article>
+    <h1 class="font-jura text-4xl">Edit Comment</h1>
+  </article>
+<br>
 <%= render "form.html", Map.put(assigns, :action, Routes.comment_path(@conn, :update, @comment)) %>
 
 <span><%= link "Back", to: Routes.comment_path(@conn, :index) %></span>
+
+</section>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <div class="flex-auto">
+  <div class="flex-auto article sm:shrink-64">
     <head>
       <meta charset="utf-8"/>
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -13,33 +13,32 @@
     </head>
 
     <body class="font-medium text-jet bg-gradient-to-r from-crayolapink to-tiffanyblue mix-blend-color-overlay">
-      <div class="max-h-screen flex">
-        <div class="flex-auto mx-auto p-10">
+        <div class="mx-auto p-10">
         <section class="grid grid-cols-12 grid-rows-3 grid-flow-row">
 
-          <div class="col-span-6">
+          <div class="col-span-6 ">
             <section>
               <p class="text-7xl pt-8 pb-2 font-jura tracking-widest"> B E A M  s c e n e </p>
-              <hr width="140%" color="licorice" size="50px" align="left" />
+              <hr width="144%" color="licorice" size="50px" align="left" />
               <p class="text-2xl px-8 pb-4 font-kosugi"> Life in the Elixir & Erlang ecosystem. </p>
             </section>
           </div>
 
-          <div class="col-span-1 pt-10 mx-20">
+          <div class="col-span-1 pt-10 mx-40">
             <.form let={f} for={@conn} method={"get"} action={Routes.posts_path(@conn, :index)}>
-              <%= text_input f, :title %>
+              <%= text_input f, :title, class: ["bg-lavender border-jet"] %>
               <%= error_tag f, :title %>
               <%= submit "Search" %>
             </.form>
           </div>
 
-          <div class="col-span-2 col-start-10">
+          <div class="col-span-2 col-start-10 pt-10 pl-20">
             <div class="">
-              <img src={Routes.static_path(@conn, "/images/beamscene-beam.svg")} alt="Beam Scene logo" width="600" height="300">
+              <img src={Routes.static_path(@conn, "/images/beamscene_dots.svg")} alt="Beam Scene logo" width="200" height="300">
             </div>
           </div>
 
-          <div class="col-span-2 row-start-2">
+          <div class="col-span-2 row-start-2 pt-40">
             <section class="text-jet -my-40">
               <div class="font-kosugi text-xl col-span-2">
                 <ul>
@@ -71,7 +70,7 @@
           </div>
 
           <div class="col-span-1">
-            <div class="absolute text-center text-jet font-jura">
+            <div class="absolute font-extralight text-left text-jet font-jura">
               <marquee width="70%" direction="up" height="1000px">
               1. The system must be able to handle very large numbers of concurrent activities.<br><br>
               2. Actions must be performed at a certain point in time or within a certain time.<br><br>
@@ -92,11 +91,9 @@
 
         </section>
       </div>
-    </div>
-
     </body>
   </div>
 
-<footer class="align-center left-2">An MVKLGMEEE production.</footer>
 
+<footer class="footer">An MVKLGMEEE production.</footer>
 </html>

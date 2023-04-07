@@ -9,18 +9,22 @@
   <% end %>
 
   <%= label f, :email %>
+  <br>
   <%= email_input f, :email, required: true %>
   <%= error_tag f, :email %>
   <br>
   <%= label f, :username %>
+  <br>
   <%= text_input f, :username, required: true %>
   <%= error_tag f, :username %>
   <br>
   <%= label f, :password %>
+  <br>
   <%= password_input f, :password, required: true %>
   <%= error_tag f, :password %>
 
   <div>
+  <br>
     <%= submit "Register" %>
   </div>
 </.form>

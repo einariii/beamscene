@@ -1,5 +1,11 @@
-<h1>Edit Tag</h1>
+<section class="flex-auto article pt-40">
+  <article>
+    <h1 class="font-jura text-4xl">Edit Tag</h1>
+  </article>
+<br>
 
 <%= render "form.html", Map.put(assigns, :action, Routes.tag_path(@conn, :update, @tag)) %>
 
 <span><%= link "Back", to: Routes.tag_path(@conn, :index) %></span>
+
+</section>
