@@ -92,9 +92,9 @@ div.fixed {
   position: fixed;
   left: 5;
   bottom: 0;
-  width: 100%;
+  width: 135%;
   color: #F6E8EA;
-  text-align: left;
+  text-align: center;
 }
 
 .invalid-feedback {
