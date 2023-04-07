@@ -13,30 +13,30 @@
     </head>
 
     <body class="font-medium text-jet bg-gradient-to-r from-crayolapink to-tiffanyblue mix-blend-color-overlay">
-        <div class="flex-wrap p-10">
-        <section class="grid grid-cols-12 grid-rows-4 grid-flow-row">
+          <div class="flex-wrap p-10">
+          <section class="grid grid-cols-12 grid-rows-4 grid-flow-row">
 
-          <div class="col-span-6">
-            <section>
-              <p class="text-7xl pt-8 pb-2 font-jura tracking-widest"> B E A M  s c e n e </p>
-              <hr width="144%" color="licorice" size="50px" align="left" />
-              <p class="text-2xl px-8 pb-4 font-kosugi"> Life in the Elixir & Erlang ecosystem. </p>
-            </section>
-          </div>
-
-          <div class="col-span-1 pt-10 mx-40">
-            <.form let={f} for={@conn} method={"get"} action={Routes.posts_path(@conn, :index)}>
-              <%= text_input f, :title, class: ["bg-lavender border-jet"] %>
-              <%= error_tag f, :title %>
-              <%= submit "Search" %>
-            </.form>
-          </div>
-
-          <div class="col-span-2 col-start-10 pt-10 pl-20">
-            <div class="">
-              <img src={Routes.static_path(@conn, "/images/beamscene_dots.svg")} alt="Beam Scene logo" width="200" height="300">
+            <div class="col-span-6">
+              <section>
+                <p class="text-7xl pt-8 pb-2 font-jura tracking-widest"> B E A M  s c e n e </p>
+                <hr width="144%" color="licorice" size="50px" align="left" />
+                <p class="text-2xl px-8 pb-4 font-kosugi"> Life in the Elixir & Erlang ecosystem. </p>
+              </section>
             </div>
-          </div>
+
+            <div class="col-span-1 pt-10 mx-40">
+              <.form let={f} for={@conn} method={"get"} action={Routes.posts_path(@conn, :index)}>
+                <%= text_input f, :title, class: ["bg-lavender border-jet"] %>
+                <%= error_tag f, :title %>
+                <%= submit "Search" %>
+              </.form>
+            </div>
+
+            <div class="col-span-2 col-start-10 pt-10 pl-20">
+              <div class="">
+                <img src={Routes.static_path(@conn, "/images/beamscene_dots.svg")} alt="Beam Scene logo" width="200" height="300">
+              </div>
+            </div>
 
           <div class="col-span-2 row-start-2 pt-40">
             <section class="text-jet -my-40">
@@ -50,12 +50,6 @@
                   </li>
                   <li class="py-2 hover:text-tiffanyblue">
                     <a href="/tags">TAGS</a>
-                  </li>
-                  <li class="py-2 hover:text-tiffanyblue">
-                    <a href="/codezone">CODEZONE</a>
-                  </li>
-                  <li class="py-2 hover:text-tiffanyblue">
-                    <a href="/webring">WEBRING</a>
                   </li>
                   <li class="py-2 hover:text-tiffanyblue">
                     <a href="/users/log_in">LOGIN</a>
