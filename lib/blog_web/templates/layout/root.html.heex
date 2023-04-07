@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark [--scroll-mt:9.875rem] lg:[--scroll-mt:6.3125rem] js-focus-visible" lang="en">
 
-  <div class="flex-auto article sm:shrink-64">
+  <div class="container flex justify-center mix article">
     <head>
       <meta charset="utf-8"/>
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -13,10 +13,10 @@
     </head>
 
     <body class="font-medium text-jet bg-gradient-to-r from-crayolapink to-tiffanyblue mix-blend-color-overlay">
-        <div class="mx-auto p-10">
+        <div class="flex-wrap p-10">
         <section class="grid grid-cols-12 grid-rows-4 grid-flow-row">
 
-          <div class="col-span-6 ">
+          <div class="col-span-6">
             <section>
               <p class="text-7xl pt-8 pb-2 font-jura tracking-widest"> B E A M  s c e n e </p>
               <hr width="144%" color="licorice" size="50px" align="left" />
@@ -65,12 +65,12 @@
             </section>
           <div class ="h-24"></div></div>
 
-          <div class="col-span-6 row-span-4 -my-40">
+          <div class="col-span-6 row-span-4 -my-40 md:col-span-3 sm:col-span-1">
               <%= @inner_content %>
           </div>
 
-          <div class="col-span-1">
-            <div class="absolute font-extralight text-left text-jet font-jura">
+          <div class="absolute col-span-1">
+            <div class="font-extralight text-left text-jet font-jura">
               <marquee width="70%" direction="up" height="1000px">
               1. The system must be able to handle very large numbers of concurrent activities.<br><br>
               2. Actions must be performed at a certain point in time or within a certain time.<br><br>
@@ -84,7 +84,7 @@
               10. Fault tolerance both to hardware failures, and software errors, must be provided.<br><br>
 
               Bjarne Däcker. Concurrent functional programming for telecommunications: A case study of technology introduction. November 2000.
-              Licentiate Thesis.<br><br>
+              Licentiate Thesis.
               </marquee>
             </div>
           </div>
