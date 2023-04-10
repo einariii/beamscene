@@ -1,5 +1,5 @@
 <section class="text-jet text-xl font-kosugi article pt-40">
-    <div class="items-center grid grid-rows-3 grid-flow-col">
+    <div class="">
       <table>
 
       <tbody>
@@ -7,9 +7,9 @@
         <%= for post <- @posts do %>
             <%= if post.visible and Date.diff(post.published_on, Date.utc_today) <= 0 do %>
             <tr>
-              <td><%= post.published_on %></td>
-              <td><%= post.title %></td>
-              <td><%= post.user.username %></td>
+              <td class="pr-4"><%= post.published_on %></td>
+              <td class="pr-4"><%= post.title %></td>
+              <td class="pr-4"><%= post.user.username %></td>
 
               <td>
                 <span><%= link "Show", to: Routes.posts_path(@conn, :show, post) %></span>
@@ -21,6 +21,8 @@
         <% end %>
       </tbody>
     </table>
-    <span><%= link "New Post", to: Routes.posts_path(@conn, :new) %></span>
+    <span>
+      <strong><%= link "New Post", to: Routes.posts_path(@conn, :new) %></strong>
+    </span>
   </div>
 </section>
