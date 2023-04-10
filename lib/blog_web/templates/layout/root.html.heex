@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html class="[--scroll-mt:9.875rem] lg:[--scroll-mt:6.3125rem] js-focus-visible" lang="en">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <div class="flex justify-center article">
+<html class="" lang="en">
     <head>
       <meta charset="utf-8"/>
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -12,19 +10,18 @@
       <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/js/app.js")}></script>
     </head>
 
-    <body class="font-medium text-jet bg-gradient-to-r from-crayolapink to-tiffanyblue mix-blend-color-overlay">
-          <div class="flex-wrap p-10">
-          <section class="grid grid-cols-12 grid-rows-4 grid-flow-row">
+    <body class="font-medium text-jet bg-gradient-to-r from-crayolapink to-tiffanyblue mix-blend-color-overlay p-10">
+          <section class="grid grid-cols-12 grid-rows-5 grid-flow-row">
 
-            <div class="col-span-6">
+            <div class="sm:col-span-2 md:col-span-4 lg:col-span-6 row-span-1">
               <section>
-                <p class="text-7xl pt-8 pb-2 font-jura tracking-widest"> B E A M  s c e n e </p>
+                <p class="sm:text-xl md:text-3xl lg:text-7xl pt-8 pb-2 font-jura tracking-widest"> B E A M  s c e n e </p>
                 <hr width="144%" color="licorice" size="50px" align="left" />
-                <p class="text-2xl px-8 pb-4 font-kosugi"> Life in the Elixir & Erlang ecosystem. </p>
+                <p class="sm:text-sm md:text-lg lg:text-2xl px-8 pb-4 font-kosugi"> Life in the Elixir & Erlang ecosystem. </p>
               </section>
             </div>
 
-            <div class="col-span-1 pt-10 mx-40">
+            <div class="col-span-1 row-span-1 pt-10 mx-40">
               <.form let={f} for={@conn} method={"get"} action={Routes.posts_path(@conn, :index)}>
                 <%= text_input f, :title, class: ["bg-lavender border-jet"] %>
                 <%= error_tag f, :title %>
@@ -32,15 +29,13 @@
               </.form>
             </div>
 
-            <div class="col-span-2 col-start-10 pt-10 pl-20">
-              <div class="">
+            <div class="sm:invisible md:invisible lg:visible col-span-2 row-span-1 col-start-10 pt-10 pl-20">
                 <img src={Routes.static_path(@conn, "/images/beamscene_dots.svg")} alt="Beam Scene logo" width="200" height="300">
-              </div>
             </div>
 
-          <div class="col-span-2 row-start-2 pt-40">
-            <section class="text-jet -my-40">
-              <div class="font-kosugi text-xl col-span-2">
+          <div class="col-span-2 pt-40">
+            <section class="text-jet text-xl -my-40">
+              <div class="">
                 <ul>
                   <li class="py-2 hover:text-tiffanyblue">
                     <a href="/about">ABOUT</a>
@@ -63,7 +58,7 @@
               <%= @inner_content %>
           </div>
 
-          <div class="absolute col-span-1">
+          <div class="sm:invisible md:invisible lg:visible absolute col-span-1">
             <div class="font-extralight text-left text-jet font-jura">
               <marquee width="70%" direction="up" height="1000px">
               1. The system must be able to handle very large numbers of concurrent activities.<br><br>
@@ -84,10 +79,7 @@
           </div>
 
         </section>
-      </div>
     </body>
-  </div>
-
 
 <footer class="footer">An MVKLGMEEE production.</footer>
 </html>

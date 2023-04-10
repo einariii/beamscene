@@ -68,6 +68,15 @@
   filter: contrast(120%) brightness(900%);
 }
 
+.button {
+  background-color: licorice;
+  border: #312F2F;
+  padding: 5px 2px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 8px;
+}
+
 .object-center {
   top: 500;
   left: 2000;

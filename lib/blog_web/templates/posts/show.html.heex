@@ -1,4 +1,4 @@
-<section class="flex-auto pt-40 justify-center">
+<section class="article pt-40">
   <article>
     <h1 class="font-jura text-4xl"> <%= String.upcase(@post.title) %> </h1>
   </article>
@@ -52,7 +52,7 @@
   <%= for comment <- @post.comments do %>
     <article>
       <header>
-        <strong>Comment By:</strong>
+        <strong>Comment by:</strong>
         <%= comment.user.username %>
         <%= if comment.inserted_at == comment.updated_at do %>
               <strong>On:</strong>
