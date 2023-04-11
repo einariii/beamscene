@@ -9,24 +9,25 @@
 /* Alerts and form errors used by phx.new */
 .alert {
   padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
+  margin-bottom: 50px;
+  text-align: center;
+  border: 2px solid transparent;
   border-radius: 4px;
 }
 .alert-info {
-  color: #31708f;
-  background-color: #d9edf7;
-  border-color: #bce8f1;
+  color: #22181C;
+  background-color: #84DCCF;
+  border-color: #22181C;
 }
 .alert-warning {
-  color: #8a6d3b;
-  background-color: #fcf8e3;
-  border-color: #faebcc;
+  color: #312F2F;
+  background-color: #EF626C;
+  border-color: #312F2F;
 }
 .alert-danger {
-  color: #a94442;
-  background-color: #f2dede;
-  border-color: #ebccd1;
+  color: #F6E8EA;
+  background-color: #22181C;
+  border-color: #F6E8EA;
 }
 .alert p {
   margin-bottom: 0;
@@ -37,8 +38,7 @@
 
 .article {
   float: left;
-  padding: 100px;
-  width: 100%;
+  width: 140%;
 }
 
 .ball {
@@ -46,9 +46,9 @@
   display: flow-root;
   align-items: center;
   justify-content: flex-end;
-  height: 125px;
-  width: 125px;
-  border-radius: 30px;
+  height: 150px;
+  width: 35px;
+  border-radius: 300px;
   overflow: hidden;
   z-index: 40;
 }
@@ -68,11 +68,19 @@
   filter: contrast(120%) brightness(900%);
 }
 
+.button {
+  background-color: licorice;
+  border: #312F2F;
+  padding: 5px 2px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 8px;
+}
+
 .object-center {
   top: 500;
   left: 2000;
 }
-
 
 div.absolute {
   position: right;
@@ -89,8 +97,17 @@ div.fixed {
   height: 150px;
 }
 
+.footer {
+  position: fixed;
+  left: 5;
+  bottom: 0;
+  width: 165%;
+  color: #EF626C;
+  text-align: center;
+}
+
 .invalid-feedback {
-  color: #a94442;
+  color: #EF626C;
   display: block;
   margin: -1rem 0 2rem;
 }
@@ -106,14 +123,14 @@ div.fixed {
 .noise {
   /* ... */
   background:
-    linear-gradient(to right, pink, transparent),
+    linear-gradient(to right, #84DCCF, #22181C),
     url(https://grainy-gradients.vercel.app/noise.svg);
     filter: contrast(170%) brightness(1000%); 
 }
 
 .overlay {
   /* ... */
-  background: moccasin;
+  background: #F6E8EA;
   mix-blend-mode: multiply;
 }
 
@@ -141,19 +158,19 @@ div.fixed {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.4);
+  background-color: #22181C;
 }
 
 .phx-modal-content {
-  background-color: #fefefe;
+  background-color: #F6E8EA;
   margin: 15vh auto;
   padding: 20px;
-  border: 1px solid #888;
+  border: 1px solid #84DCCF;
   width: 80%;
 }
 
 .phx-modal-close {
-  color: #aaa;
+  color: #F6E8EA;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -161,7 +178,7 @@ div.fixed {
 
 .phx-modal-close:hover,
 .phx-modal-close:focus {
-  color: black;
+  color: #22181C;
   text-decoration: none;
   cursor: pointer;
 }

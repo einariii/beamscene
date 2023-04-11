@@ -1,4 +1,5 @@
-<h1>Log in</h1>
+<section class="flex-auto article text-jet text-xl font-kosugi tracking-wide">
+    <div class="min-h-screen items-center mx-auto">
 
 <.form let={f} for={@conn} action={Routes.user_session_path(@conn, :create)} as={:user}>
   <%= if @error_message do %>
@@ -6,17 +7,19 @@
       <p><%= @error_message %></p>
     </div>
   <% end %>
-
   <%= label f, :email %>
+  <br>
   <%= email_input f, :email, required: true %>
-
+  <br>
   <%= label f, :password %>
+  <br>
   <%= password_input f, :password, required: true %>
-
-  <%= label f, :remember_me, "Keep me logged in for 60 days" %>
+  <br>
+  <%= label f, :remember_me, "Keep me logged in for 99.999999999& uptime" %>
   <%= checkbox f, :remember_me %>
 
   <div>
+  <br>
     <%= submit "Log in" %>
   </div>
 </.form>
@@ -25,3 +28,6 @@
   <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
   <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
 </p>
+
+</div>
+</section>

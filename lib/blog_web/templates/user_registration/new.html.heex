@@ -1,4 +1,5 @@
-<h1>Register</h1>
+<section class="flex-auto article text-jet text-xl font-kosugi tracking-wide">
+    <div class="min-h-screen items-center mx-auto">
 
 <.form let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)}>
   <%= if @changeset.action do %>
@@ -8,18 +9,22 @@
   <% end %>
 
   <%= label f, :email %>
+  <br>
   <%= email_input f, :email, required: true %>
   <%= error_tag f, :email %>
-
+  <br>
   <%= label f, :username %>
+  <br>
   <%= text_input f, :username, required: true %>
   <%= error_tag f, :username %>
-
+  <br>
   <%= label f, :password %>
+  <br>
   <%= password_input f, :password, required: true %>
   <%= error_tag f, :password %>
 
   <div>
+  <br>
     <%= submit "Register" %>
   </div>
 </.form>
@@ -28,3 +33,6 @@
   <%= link "Log in", to: Routes.user_session_path(@conn, :new) %> |
   <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
 </p>
+
+</div>
+</section>

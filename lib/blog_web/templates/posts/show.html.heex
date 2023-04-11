@@ -1,8 +1,10 @@
-<section class="article">
+<section class="article pt-40">
   <article>
     <h1 class="font-jura text-4xl"> <%= String.upcase(@post.title) %> </h1>
   </article>
-
+   <br>
+  <br>
+  <img src={Routes.static_path(@conn, "/images/heart-soul-dev.svg")} alt="Post image" width="900" height="600">
   <br>
   <ul>
     <li>
@@ -23,7 +25,7 @@
       <%= @post.user.username %>
     </li>
 
-    <li class="text-xl">
+    <li class="text-xl text-justify">
       <br>
       <%= @post.content %>
     </li>
@@ -36,6 +38,7 @@
 </section>
 
 <section class="article">
+<br>
   <%= for tag <- @post.tags do %>
     <article>
       <p><%= tag.name %></p>
@@ -45,10 +48,11 @@
 
 
 <section class="article">
+<br>
   <%= for comment <- @post.comments do %>
     <article>
       <header>
-        <strong>Comment By:</strong>
+        <strong>Comment by:</strong>
         <%= comment.user.username %>
         <%= if comment.inserted_at == comment.updated_at do %>
               <strong>On:</strong>
@@ -68,6 +72,7 @@
 </section>
 
 <section class="article">
+<br>
   <h1>Add a Comment</h1>
   <%= form_for @comment_changeset, Routes.comment_path(@conn, :create), fn f -> %>
     <%!-- <%= if @changeset.action do %>

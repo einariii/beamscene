@@ -1,5 +1,10 @@
-<h1>New Post</h1>
+<section class="flex-auto article pt-40">
+  <article>
+    <h1 class="font-jura text-4xl">New Post</h1>
+  </article>
 
 <%= render "form.html", Map.put(assigns, :action, Routes.posts_path(@conn, :create)) %>
 
 <span><%= link "Back", to: Routes.posts_path(@conn, :index) %></span>
+
+</section>

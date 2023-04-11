@@ -1,39 +1,29 @@
-<.form let={f} for={@conn} method={"get"} action={Routes.posts_path(@conn, :index)}>
-  <%= text_input f, :title %>
-  <%= error_tag f, :title %>
-  <%= submit "Search" %>
-</.form>
+<section class="text-jet text-xl font-kosugi article pt-60 pl-60">
+    <div class="">
+      <table>
 
+      <tbody>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Published On</th>
-      <th>Visible</th>
+        <%= for post <- @posts do %>
+            <%= if post.visible and Date.diff(post.published_on, Date.utc_today) <= 0 do %>
+            <tr>
+              <td class="pr-4"><%= post.published_on %></td>
+              <td class="pr-4"><%= post.title %></td>
+              <td class="pr-4"><%= post.user.username %></td>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  
-<%= for post <- @posts do %>
-    <%= if post.visible and Date.diff(post.published_on, Date.utc_today) <= 0 do %>
-    <tr>
-      <td><%= post.title %></td>
-      <td><%= post.content %></td>
-      <td><%= post.published_on %></td>
-
-      <td>
-        <span><%= link "Show", to: Routes.posts_path(@conn, :show, post) %></span>
-        <span><%= link "Edit", to: Routes.posts_path(@conn, :edit, post) %></span>
-        <span><%= link "Delete", to: Routes.posts_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"] %></span>
-      </td>
-    </tr>
-    <% end %>
-<% end %>
-  </tbody>
-</table>
-
-<span><%= link "New Post", to: Routes.posts_path(@conn, :new) %></span>
+              <td>
+                <span><%= link "Show", to: Routes.posts_path(@conn, :show, post) %></span>
+                <span><%= link "Edit", to: Routes.posts_path(@conn, :edit, post) %></span>
+                <span><%= link "Delete", to: Routes.posts_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"] %></span>
+              </td>
+            </tr>
+            <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+    <span>
+      <strong><%= link "New Post", to: Routes.posts_path(@conn, :new) %></strong>
+    </span>
+  </div>
+</section>
