@@ -46,9 +46,9 @@
   display: flow-root;
   align-items: center;
   justify-content: flex-end;
-  height: 125px;
+  height: 150px;
   width: 35px;
-  border-radius: 30px;
+  border-radius: 300px;
   overflow: hidden;
   z-index: 40;
 }
@@ -102,7 +102,7 @@ div.fixed {
   left: 5;
   bottom: 0;
   width: 135%;
-  color: #F6E8EA;
+  color: #EF626C;
   text-align: center;
 }
 
