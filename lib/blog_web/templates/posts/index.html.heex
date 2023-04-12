@@ -1,4 +1,4 @@
-<section class="text-jet text-xl font-kosugi article pt-60 pl-60">
+<section class="text-jet text-xl font-kosugi scale-125 article pt-60 pl-60">
     <div class="">
       <table>
 
@@ -7,14 +7,14 @@
         <%= for post <- @posts do %>
             <%= if post.visible and Date.diff(post.published_on, Date.utc_today) <= 0 do %>
             <tr>
-              <td class="pr-4"><%= post.published_on %></td>
-              <td class="pr-4"><%= post.title %></td>
-              <td class="pr-4"><%= post.user.username %></td>
+              <td class="pr-4"><p class="text-sm pt-4"> utc_then() = </p><%= post.published_on %></td>
+              <td class="pr-4"><p class="text-sm pbt-4"> title: "</p><%= post.title %><p class="text-sm pbt-4">"</p></td>
+              <td class="pr-4"><p class="text-sm pt-4">author => </p><%= post.user.username %></td>
 
               <td>
-                <span><%= link "Show", to: Routes.posts_path(@conn, :show, post) %></span>
-                <span><%= link "Edit", to: Routes.posts_path(@conn, :edit, post) %></span>
-                <span><%= link "Delete", to: Routes.posts_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"] %></span>
+                <span class="extra-bold text-sm"> <%= link ":show", to: Routes.posts_path(@conn, :show, post) %></span>
+                <span class="underline text-sm"> <%= link ":edit", to: Routes.posts_path(@conn, :edit, post) %></span>
+                <span class="italic text-sm"> <%= link ":delete", to: Routes.posts_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"] %></span>
               </td>
             </tr>
             <% end %>

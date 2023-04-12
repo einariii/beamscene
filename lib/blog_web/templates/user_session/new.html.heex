@@ -1,4 +1,4 @@
-<section class="flex-auto article text-jet text-xl font-kosugi tracking-wide">
+<section class="flex-auto article text-jet text-xl font-kosugi tracking-wide article pt-60 pl-40">
     <div class="min-h-screen items-center mx-auto">
 
 <.form let={f} for={@conn} action={Routes.user_session_path(@conn, :create)} as={:user}>
@@ -15,18 +15,27 @@
   <br>
   <%= password_input f, :password, required: true %>
   <br>
-  <%= label f, :remember_me, "Keep me logged in for 99.999999999& uptime" %>
+  <br>
+  <span class="extra-bold text-xl">¿ <%= label f, :remember_me, "Keep me logged in for 99.999999999& uptime" %>
+    <span class="extra-bold text-xl">?</span>
+    </span>
   <%= checkbox f, :remember_me %>
 
   <div>
   <br>
+  <span class="extra-bold text-3xl">
     <%= submit "Log in" %>
+  </span>
   </div>
 </.form>
 
 <p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
+  <span class="extra-bold text-lg underline">
+    <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
+  </span>
+  <span class="italic text-xl">
+    <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
+  </span>
 </p>
 
 </div>

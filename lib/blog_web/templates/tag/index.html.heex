@@ -1,4 +1,4 @@
-<section class="text-jet text-xl font-kosugi article pt-60 pl-60">
+<section class="text-jet text-xl font-kosugi article pt-60 pl-60 scale-125">
     <div class="items-center grid grid-rows-3 grid-flow-col">
 
 <table>
@@ -9,10 +9,10 @@
   <tbody>
 <%= for tag <- @tags do %>
     <tr>
-      <td><%= tag.name %></td>
+      <td><p class="text-sm pbt-4"> tag: "</p><%= tag.name %><p>"</p></td>
 
       <td>
-        <span><%= link "Show posts", to: Routes.tag_path(@conn, :show, tag) %></span>
+        <span class="italic text-sm"> <%= link "Show posts", to: Routes.tag_path(@conn, :show, tag) %></span>
       </td>
     </tr>
 <% end %>
