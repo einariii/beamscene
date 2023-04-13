@@ -25,13 +25,19 @@
 
   <div>
   <br>
+  <span class="extra-bold text-3xl">
     <%= submit "Register" %>
+  </span>
   </div>
 </.form>
 
 <p>
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
+  <span class="extra-bold text-lg underline">
+    <%= link "Log in", to: Routes.user_session_path(@conn, :new) %> |
+  </span>
+  <span class="italic text-xl">
+    <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
+  </span>
 </p>
 
 </div>
