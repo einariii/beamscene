@@ -39,9 +39,10 @@
 
 <section class="article">
 <br>
+<p> TAGS: </p>
   <%= for tag <- @post.tags do %>
     <article>
-      <p class="text-sm pt-4"> TAGS:<%= tag.name %></p>
+      <p class="text-sm pt-4"><%= tag.name %></p>
     </article>
   <% end %>
 </section>
