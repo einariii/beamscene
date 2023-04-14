@@ -9,7 +9,8 @@
 /* Alerts and form errors used by phx.new */
 .alert {
   padding: 15px;
-  margin-bottom: 50px;
+  margin-top: 150px;
+  margin-bottom: 15px;
   text-align: center;
   border: 2px solid transparent;
   border-radius: 4px;

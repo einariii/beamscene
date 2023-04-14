@@ -1,5 +1,10 @@
-<h1>New Tag</h1>
+<section class="article pt-40">
+  <article>
+    <h1 class="font-jura text-4xl">New Tag</h1>
+  </article>
 
 <%= render "form.html", Map.put(assigns, :action, Routes.tag_path(@conn, :create)) %>
 
 <span><%= link "Back", to: Routes.tag_path(@conn, :index) %></span>
+
+</section>

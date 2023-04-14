@@ -1,15 +1,13 @@
-<section class="flex-auto article pt-40">
-<br>
+<section class="article pt-40">
 
 <ul>
-
-  <li>
+  <li class="text-2xl">
     <strong>Tag:</strong>
     <%= @tag.name %>
   </li>
-
 </ul>
 
+<br>
 <span><%= link "Edit", to: Routes.tag_path(@conn, :edit, @tag) %></span> |
 <span><%= link "Back", to: Routes.tag_path(@conn, :index) %></span>
 
