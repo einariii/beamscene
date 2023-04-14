@@ -7,9 +7,9 @@
         <%= for post <- @posts do %>
             <%= if post.visible and Date.diff(post.published_on, Date.utc_today) <= 0 do %>
             <tr>
-              <td class="pr-4"><p class="text-sm pt-4"> utc_then() = </p><%= post.published_on %></td>
-              <td class="pr-4"><p class="text-sm pbt-4"> title: "</p><%= post.title %><p class="text-sm pbt-4">"</p></td>
-              <td class="pr-4"><p class="text-sm pt-4">author => </p><%= post.user.username %></td>
+              <td class="pr-6"><p class="text-sm pt-4"> utc_then() = </p><%= post.published_on %></td>
+              <td class="pr-6"><p class="text-sm pt-4"> title:</p>"<%= post.title %>"</td>
+              <td class="pr-6"><p class="text-sm pt-4">author => </p><%= post.user.username %></td>
 
               <td>
                 <span class="extra-bold text-sm"> <%= link ":show", to: Routes.posts_path(@conn, :show, post) %></span>
@@ -22,8 +22,8 @@
       </tbody>
     </table>
     <br>
-    <span>
+    <div class="button">
       <strong><%= link "New Post", to: Routes.posts_path(@conn, :new) %></strong>
-    </span>
+    </div>
   </div>
 </section>

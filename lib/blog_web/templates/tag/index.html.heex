@@ -9,10 +9,8 @@
   <tbody>
 <%= for tag <- @tags do %>
     <tr>
-      <td><p class="text-sm pbt-4"> tag: "</p><%= tag.name %><p>"</p></td>
-
-      <td>
-        <span class="italic text-sm"> <%= link "Show posts", to: Routes.tag_path(@conn, :show, tag) %></span>
+      <td><p class="text-sm pt-4"> tag:</p>"<%= tag.name %>" ........................................
+        <span class="italic text-md"> <%= link "Show posts", to: Routes.tag_path(@conn, :show, tag) %></span>
       </td>
     </tr>
 <% end %>

@@ -25,3 +25,4 @@ defmodule BlogWeb.UserSessionController do
     |> UserAuth.log_out_user()
   end
 end
+  
