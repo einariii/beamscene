@@ -14,11 +14,13 @@
           <section class="grid grid-cols-12 grid-rows-5 grid-flow-row">
 
             <div class="sm:col-span-2 md:col-span-4 lg:col-span-6 row-span-1">
+              <a href="/">
               <section>
                 <p class="sm:text-xl md:text-3xl lg:text-7xl pt-8 pb-2 font-jura tracking-widest"> B E A M  s c e n e </p>
                 <hr width="144%" color="licorice" size="50px" align="left" />
                 <p class="sm:text-sm md:text-lg lg:text-2xl px-8 pb-4 font-kosugi"> Life in the Elixir & Erlang ecosystem. </p>
               </section>
+              </a>
             </div>
 
             <div class="col-span-1 row-span-1 pt-10 mx-40">
@@ -46,6 +48,9 @@
                     <a href="/tags">TAGS</a>
                   </li>
                   <%= if @current_user do %>
+                  <li class="py-2 hover:text-tiffanyblue">
+                    <span><%= link "SETTINGS", to: Routes.user_settings_path(@conn, :edit) %></span>
+                  </li>
                   <li class="py-2 hover:text-tiffanyblue">
                     <span><%= link "LOGOUT", to: Routes.user_session_path(@conn, :delete), method: :delete %></span>
                   </li>
