@@ -16,9 +16,9 @@
             <div class="sm:col-span-2 md:col-span-4 lg:col-span-6 row-span-1">
               <a href="/">
               <section>
-                <p class="sm:text-xl md:text-3xl lg:text-7xl pt-8 pb-2 font-jura tracking-widest"> B E A M  s c e n e </p>
-                <hr width="144%" color="licorice" size="50px" align="left" />
-                <p class="sm:text-sm md:text-lg lg:text-2xl px-8 pb-4 font-kosugi"> Life in the Elixir & Erlang ecosystem. </p>
+                <p class="sm:text-xl md:text-3xl lg:text-5xl xl:text-7xl pt-8 pb-2 font-jura tracking-widest whitespace-nowrap"> B E A M  s c e n e </p>
+                <hr width="sm:88% md:122% xl:144%" color="licorice" size="50px" align="left" />
+                <p class="sm:text-xsm md:text-md lg:text-lg xl:text-2xl px-8 pb-4 font-kosugi"> Life in the Elixir & Erlang ecosystem. </p>
               </section>
               </a>
             </div>
@@ -31,12 +31,12 @@
               </.form>
             </div>
 
-            <div class="sm:invisible md:invisible lg:visible col-span-2 row-span-1 col-start-10 pt-10 pl-20">
+            <div class="sm:invisible md:invisible lg:invisible xl:visible col-span-2 row-span-1 col-start-10 pt-10 pl-20">
                 <img src={Routes.static_path(@conn, "/images/beamscene_dots.svg")} alt="Beam Scene logo" width="200" height="300">
             </div>
 
           <div class="row-start-2 pt-60">
-            <section class="text-jet text-2xl -my-40">
+            <section class="text-jet sm:text-sm md:text-md lg:text-xl xl:text-2xl -my-40">
                 <ul>
                   <li class="py-2 hover:text-tiffanyblue">
                     <a href="/about">ABOUT</a>
@@ -63,11 +63,11 @@
             </section>
           <div class ="h-24"></div></div>
 
-          <div class="col-span-6 row-span-4 -my-40 mx-20">
+          <div class="col-span-4 row-span-4 -my-40 mx-20">
               <%= @inner_content %>
           </div>
 
-          <div class="sm:invisible md:invisible lg:visible absolute col-span-1">
+          <div class="md:invisible xl:visible absolute col-span-1">
             <div class="font-extralight text-left text-jet font-jura">
               <marquee width="70%" direction="up" height="1000px">
               1. The system must be able to handle very large numbers of concurrent activities.<br><br>
@@ -90,5 +90,5 @@
         </section>
     </body>
 
-<footer class="footer text-lg">a MAD FERN KILO production.</footer>
+<footer class="footer sm:text-sm md:text-md text-lg">a MAD FERN KILO production.</footer>
 </html>
