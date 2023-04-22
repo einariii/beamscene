@@ -31,7 +31,7 @@
               </.form>
             </div>
 
-            <div class="sm:invisible md:invisible lg:invisible xl:visible col-span-2 row-span-1 col-start-10 pt-10 pl-20">
+            <div class="z-0 sm:invisible md:invisible lg:invisible xl:visible col-span-2 row-span-1 col-start-10 pt-10 pl-20">
                 <img src={Routes.static_path(@conn, "/images/beamscene_dots.svg")} alt="Beam Scene logo" width="200" height="300">
             </div>
 
@@ -63,22 +63,31 @@
             </section>
           <div class ="h-24"></div></div>
 
-          <div class="col-span-4 row-span-4 -my-40 mx-20">
+          <div class="col-span-7 row-span-4 -my-40 mx-20">
               <%= @inner_content %>
           </div>
 
-          <div class="md:invisible xl:visible absolute col-span-1">
+          <div class="sm:invisible md:invisible xl:visible absolute pt-16">
             <div class="font-extralight text-left text-jet font-jura">
-              <marquee width="70%" direction="up" height="1000px">
+              <marquee width="50%" direction="left" height="1300px">
               1. The system must be able to handle very large numbers of concurrent activities.<br><br>
+              http://www.erlang.org/ http://clojerl.org/ http://joxa.org/<br><br>
               2. Actions must be performed at a certain point in time or within a certain time.<br><br>
+              https://github.com/kapok-lang/kapok https://github.com/the-concurrent-schemer/scm<br><br>
               3. Systems may be distributed over several computers.<br><br>
+              https://github.com/alpaca-lang/alpaca https://caramel.run/ https://cuneiform-lang.org<br><br>
               4. The system is used to control hardware.<br><br>
+              https://wende.github.io/elchemy/ https://github.com/etnt/eml https://github.com/kjnilsson/fez https://github.com/fika-lang/fika<br><br>
               5. The software systems are very large.<br><br>
+              https://gleam.run https://github.com/hamler-lang/hamler https://github.com/etnt/Haskerl<br><br>
               6. The system exhibits complex functionality such as, feature interaction.<br><br>
+              https://github.com/lenary/idris-erlang https://github.com/chrrasmussen/Idris2-Erlang https://purerl.fun/ https://github.com/rufus-lang/rufus<br><br>
               7. The systems should be in continuous operation for many years.<br><br>
+              https://github.com/gfngfn/Sesterl http://efene.org/ http://elixir-lang.org/ https://github.com/bragful/ephp<br><br>
               8. Software maintenance (reconfiguration, etc) should be performed without stopping the system.<br><br>
+              https://github.com/joearms/erl2 https://github.com/rvirding/erlog https://github.com/tonyrog/ffe https://github.com/marianoguerra/interfix<br><br>
               9. There are stringent quality, and reliability requirements.<br><br>
+              https://github.com/rvirding/luerl https://otpcl.github.io/ http://reia-lang.org/ https://github.com/zotonic/template_compiler https://github.com/extend/xerl<br><br>
               10. Fault tolerance both to hardware failures, and software errors, must be provided.<br><br>
 
               Bjarne Däcker. Concurrent functional programming for telecommunications: A case study of technology introduction. November 2000.

@@ -44,14 +44,9 @@
 
 .ball {
   position: absolute;
-  display: flow-root;
-  align-items: center;
-  justify-content: flex-end;
   height: 150px;
-  width: 35px;
-  border-radius: 300px;
-  overflow: hidden;
-  z-index: 40;
+  width: 50px;
+  border-radius: 30px;
 }
 
 .ball-light {
@@ -60,11 +55,11 @@
   width: 100%;
   height: 100%;
   background: radial-gradient(circle at 67% 30%, #EF626C, #84DCCF);
-  mix-blend-mode: multiply;
+  mix-blend-mode: color-burn;
 }
 
 .ball-shadow {
-  height: 100%;
+  height: 300%;
   background: radial-gradient(circle at 65% 35%, #22181C, #312F2F), url(https://grainy-gradients.vercel.app/noise.svg);     
   filter: contrast(120%) brightness(900%);
 }
@@ -102,9 +97,9 @@ div.fixed {
   position: fixed;
   left: 5;
   bottom: 0;
-  width: 161%;
+  width: 88%;
   color: #EF626C;
-  text-align: center;
+  text-align: right;
 }
 
 .invalid-feedback {
