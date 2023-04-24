@@ -15,10 +15,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['Jura'],
-        'serif': ['Kosugi'],
         'jura': ['Jura'],
-        'kosugi': ['Kosugi']
+        'kosugi': ['Kosugi'],
+        'unbounded': ['Unbounded']
       }
     },
     colors: {

@@ -1,8 +1,9 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-@import url("https://fonts.googleapis.com/css2?family=Jura&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Jura&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kosugi&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Unbounded&display=swap"); */
 
 /* This file is for your main application CSS */
 
@@ -198,7 +199,17 @@ div.fixed {
   position: static;
 }
 
+.jura {
+  font-family: Jura;
+}
 
+.kosugi {
+  font-family: Kosugi;
+}
+
+.unbounded {
+  font-family: Unbounded;
+}
 
 @keyframes fade-in-scale-keys{
   0% { scale: 0.95; opacity: 0; }
@@ -220,12 +231,17 @@ div.fixed {
   100% { opacity: 0; }
 }
 
-/* @font-face {
+@font-face {
   font-family: 'Jura';
-  src: url('../Jura-VariableFont_wght.ttf'), format('ttf');
+  src: url('/fonts/Jura-VariableFont_wght.ttf'), format('ttf');
 }
 
 @font-face {
   font-family: 'Kosugi';
-  src:  url('../Kosugi-Regular.ttf') format('ttf'); 
-} */
+  src:  url('/fonts/Kosugi-Regular.ttf') format('ttf'); 
+} 
+
+@font-face {
+  font-family: 'Unbounded';
+  src:  url('/fonts/Unbounded-VariableFont_wght.ttf') format('ttf'); 
+} 
