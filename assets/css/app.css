@@ -204,15 +204,15 @@ div.fixed {
 }
 
 .Karla {
-  font-family: Karla;
+  font-family: 'Karla';
 }
 
 .kosugi {
-  font-family: Kosugi;
+  font-family: 'Kosugi';
 }
 
-.vt323 {
-  font-family: VT323;
+.use-local-font {
+  font-family: 'VT323';
 }
 
 @keyframes fade-in-scale-keys{
@@ -251,6 +251,6 @@ div.fixed {
 } 
 
 @font-face {
-  font-family: 'vt323';
+  font-family: 'VT323';
   src:  url('/fonts/VT323-Regular.ttf') format('ttf'); 
 } 

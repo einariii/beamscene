@@ -16,7 +16,7 @@
             <div class="sm:col-span-2 md:col-span-4 lg:col-span-6 row-span-1">
               <a href="/">
               <section>
-                <p class="sm:text-xl md:text-3xl lg:text-5xl xl:text-7xl pt-8 pb-2 jura font-semibold italic tracking-widest overline decoration-wavy whitespace-nowrap"> B E A M  s c e n e </p>
+                <p class="sm:text-xl md:text-3xl lg:text-5xl xl:text-7xl pt-8 pb-2 jura font-extrabold italic tracking-widest overline decoration-wavy whitespace-nowrap"> B E A M  s c e n e </p>
                 <p class="jura sm:text-xsm md:text-md lg:text-lg xl:text-2xl px-8 pb-4"> Life in the Elixir & Erlang ecosystems. </p>
               </section>
               </a>
@@ -37,24 +37,24 @@
           <div class="jura font-extralight row-start-2 pt-60">
             <section class="text-jet sm:text-sm md:text-md lg:text-lg xl:text-lg -my-40">
                 <ul>
-                  <li class="py-2 hover:text-tiffanyblue">
+                  <li class="hover:text-tiffanyblue">
                     <a href="/about">ABOUT.</a>
                   </li>
-                  <li class="py-2 hover:text-tiffanyblue">
+                  <li class="hover:text-tiffanyblue">
                     <a href="/posts">POSTS.</a>
                   </li>
-                  <li class="py-2 hover:text-tiffanyblue">
+                  <li class="hover:text-tiffanyblue">
                     <a href="/tags">TAGS.</a>
                   </li>
                   <%= if @current_user do %>
-                  <li class="py-2 hover:text-tiffanyblue">
+                  <li class="hover:text-tiffanyblue">
                     <span><%= link "SETTINGS.", to: Routes.user_settings_path(@conn, :edit) %></span>
                   </li>
-                  <li class="py-2 hover:text-tiffanyblue">
+                  <li class="hover:text-tiffanyblue">
                     <span><%= link "LOGOUT.", to: Routes.user_session_path(@conn, :delete), method: :delete %></span>
                   </li>
                   <% else %>
-                  <li class="py-2 hover:text-tiffanyblue">
+                  <li class="hover:text-tiffanyblue">
                     <a href="/users/log_in">LOGIN.</a>
                   </li>
                   <% end %>
@@ -67,7 +67,7 @@
           </div>
 
           <div class="jura sm:invisible md:invisible xl:visible absolute pt-16">
-            <div class="font-bold text-left text-jet">
+            <div class="font-extrabold text-left text-jet">
               <marquee width="50%" direction="left" height="1300px">
               1. The system must be able to handle very large numbers of concurrent activities.<br><br>
               http://www.erlang.org/ http://clojerl.org/ http://joxa.org/<br><br>
