@@ -1,8 +1,8 @@
-<section class="text-jet text-xl font-kosugi tracking-wide article pt-60 pl-40">
+<section class="text-jet text-xl jura tracking-wide article pt-60 pl-40">
     <div class="min-h-screen items-center mx-auto">
 
   <article>
-    <h1 class="font-jura text-4xl">Settings</h1>
+    <h1 class="jura text-4xl">Settings</h1>
   </article>
 <br>
 <.form let={f} for={@email_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_email">
@@ -24,7 +24,7 @@
   <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_email" %>
   <%= error_tag f, :current_password %>
 
-  <div class="font-jura text-xl">
+  <div class="jura text-xl">
     <%= submit "Change email" %>
   </div>
 </.form>
@@ -54,7 +54,7 @@
   <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_password" %>
   <%= error_tag f, :current_password %>
 
-  <div class="font-jura text-xl">
+  <div class="jura text-xl">
     <%= submit "Change password" %>
   </div>
 </.form>

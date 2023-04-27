@@ -1,8 +1,0 @@
-/* kosugi  */
-@font-face {
-    font-family: 'Kosugi';
-    font-style: normal;
-    font-weight: 400;
-    src: local(''),
-         url('Kosugi-Regular.ttf') format('ttf'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-  }
