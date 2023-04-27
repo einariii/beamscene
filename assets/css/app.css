@@ -3,7 +3,7 @@
 @import "tailwindcss/utilities";
 /* @import url("https://fonts.googleapis.com/css2?family=Jura&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kosugi&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Unbounded&display=swap"); */
+*/
 
 /* This file is for your main application CSS */
 
@@ -203,12 +203,16 @@ div.fixed {
   font-family: Jura;
 }
 
+.Karla {
+  font-family: Karla;
+}
+
 .kosugi {
   font-family: Kosugi;
 }
 
-.unbounded {
-  font-family: Unbounded;
+.vt323 {
+  font-family: VT323;
 }
 
 @keyframes fade-in-scale-keys{
@@ -237,11 +241,16 @@ div.fixed {
 }
 
 @font-face {
+  font-family: 'Karla';
+  src:  url('/fonts/Karla-VariableFont_wght.ttf') format('ttf'); 
+} 
+
+@font-face {
   font-family: 'Kosugi';
   src:  url('/fonts/Kosugi-Regular.ttf') format('ttf'); 
 } 
 
 @font-face {
-  font-family: 'Unbounded';
-  src:  url('/fonts/Unbounded-VariableFont_wght.ttf') format('ttf'); 
+  font-family: 'vt323';
+  src:  url('/fonts/VT323-Regular.ttf') format('ttf'); 
 } 

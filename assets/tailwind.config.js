@@ -2,7 +2,7 @@
 // https://tailwindcss.com/docs/configuration
 
 let plugin = require('tailwindcss/plugin')
-// const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 
 module.exports = {
@@ -15,9 +15,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        'Karla': ['Karla'],
         'jura': ['Jura'],
         'kosugi': ['Kosugi'],
-        'unbounded': ['Unbounded']
+        'vt323': ['VT323', ...defaultTheme.fontFamily.sans],
       }
     },
     colors: {
