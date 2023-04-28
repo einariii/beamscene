@@ -37,24 +37,24 @@
           <div class="jura font-extralight row-start-2 pt-60">
             <section class="text-jet sm:text-sm md:text-md lg:text-lg xl:text-lg -my-40">
                 <ul>
-                  <li class="hover:text-tiffanyblue">
+                  <li class="rotate-45 py-2 hover:text-tiffanyblue">
                     <a href="/about">ABOUT.</a>
                   </li>
-                  <li class="hover:text-tiffanyblue">
+                  <li class="rotate-45 py-2 hover:text-tiffanyblue">
                     <a href="/posts">POSTS.</a>
                   </li>
-                  <li class="hover:text-tiffanyblue">
+                  <li class="rotate-45 py-2 hover:text-tiffanyblue">
                     <a href="/tags">TAGS.</a>
                   </li>
                   <%= if @current_user do %>
-                  <li class="hover:text-tiffanyblue">
+                  <li class="rotate-45 py-2 hover:text-tiffanyblue">
                     <span><%= link "SETTINGS.", to: Routes.user_settings_path(@conn, :edit) %></span>
                   </li>
-                  <li class="hover:text-tiffanyblue">
+                  <li class="rotate-45 py-2 hover:text-tiffanyblue">
                     <span><%= link "LOGOUT.", to: Routes.user_session_path(@conn, :delete), method: :delete %></span>
                   </li>
                   <% else %>
-                  <li class="hover:text-tiffanyblue">
+                  <li class="rotate-45 py-2 hover:text-tiffanyblue">
                     <a href="/users/log_in">LOGIN.</a>
                   </li>
                   <% end %>
@@ -67,7 +67,7 @@
           </div>
 
           <div class="jura sm:invisible md:invisible xl:visible absolute pt-16">
-            <div class="font-extrabold text-left text-jet">
+            <div class="font-bold text-left text-jet">
               <marquee width="50%" direction="left" height="1300px">
               1. The system must be able to handle very large numbers of concurrent activities.<br><br>
               http://www.erlang.org/ http://clojerl.org/ http://joxa.org/<br><br>
@@ -97,5 +97,5 @@
 
         </section>
     </body>
-<footer class="footer sm:text-sm md:text-md text-lg">a MAD FERN KILO production.</footer>
+<footer class="footer vt323 sm:text-sm md:text-md text-lg">a MAD FERN KILO production.</footer>
 </html>
